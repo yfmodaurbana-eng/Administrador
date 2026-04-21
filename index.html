@@ -19,7 +19,6 @@ body{
   background:#171616;
   padding:20px;
   border-radius:14px;
-  box-shadow:0 0 15px rgba(255,255,255,0.05);
 }
 
 h1{
@@ -52,77 +51,167 @@ button{
 }
 
 textarea{
-  min-height:280px;
+  min-height:320px;
   resize:vertical;
-}
-
-small{
-  color:#bcbcbc;
 }
 </style>
 </head>
+
 <body>
 
 <div class="admin-box">
   <h1>Panel Admin Productos</h1>
 
-  <input id="titulo" placeholder="Nombre del producto">
+  <input id="titulo" placeholder="Nombre producto">
   <input id="precio" placeholder="Precio (ej: 15€)">
-  <input id="referencia" placeholder="Referencia (ej: CD002)">
+  <input id="referencia" placeholder="Referencia">
 
-  <input id="imgBlanco" placeholder="URL imagen Blanco">
-  <input id="imgNegro" placeholder="URL imagen Negro">
-  <input id="imgGris" placeholder="URL imagen Gris">
-  <input id="imgRojo" placeholder="URL imagen Rojo">
-  <input id="imgAzul" placeholder="URL imagen Azul">
-  <input id="imgVerde" placeholder="URL imagen Verde">
-  <input id="imgBeige" placeholder="URL imagen Beige">
-  <input id="imgRosa" placeholder="URL imagen Rosa">
-  <input id="imgMarron" placeholder="URL imagen Marrón">
-  <input id="imgAmarillo" placeholder="URL imagen Amarillo">
+  <input id="imgBlanco" placeholder="URL Blanco">
+  <input id="imgNegro" placeholder="URL Negro">
+  <input id="imgGris" placeholder="URL Gris">
+  <input id="imgRojo" placeholder="URL Rojo">
+  <input id="imgAzul" placeholder="URL Azul">
+  <input id="imgVerde" placeholder="URL Verde">
+  <input id="imgBeige" placeholder="URL Beige">
+  <input id="imgRosa" placeholder="URL Rosa">
+  <input id="imgMarron" placeholder="URL Marrón">
+  <input id="imgAmarillo" placeholder="URL Amarillo">
 
-  <input id="telefono" placeholder="WhatsApp de pedidos (ej: 34600000000)">
+  <input id="telefono" placeholder="WhatsApp (34600000000)">
 
-  <button onclick="generarCodigo()">Generar código HTML</button>
-
-  <small>Este bloque lo copias y lo pegas dentro de tu catálogo de productos.</small>
+  <button onclick="generarCodigo()">Generar producto</button>
 
   <textarea id="resultado" placeholder="Aquí aparecerá el código listo para copiar"></textarea>
 </div>
 
 <script>
 function generarCodigo(){
-  const titulo = document.getElementById('titulo').value;
-  const precio = document.getElementById('precio').value;
-  const referencia = document.getElementById('referencia').value;
-  const telefono = document.getElementById('telefono').value;
 
-  const colores = [
-    ['Blanco', document.getElementById('imgBlanco').value],
-    ['Negro', document.getElementById('imgNegro').value],
-    ['Gris', document.getElementById('imgGris').value],
-    ['Rojo', document.getElementById('imgRojo').value],
-    ['Azul', document.getElementById('imgAzul').value],
-    ['Verde', document.getElementById('imgVerde').value],
-    ['Beige', document.getElementById('imgBeige').value],
-    ['Rosa', document.getElementById('imgRosa').value],
-    ['Marrón', document.getElementById('imgMarron').value],
-    ['Amarillo', document.getElementById('imgAmarillo').value]
-  ].filter(item => item[1] !== '');
+const titulo = document.getElementById("titulo").value;
+const precio = document.getElementById("precio").value;
+const referencia = document.getElementById("referencia").value;
+const telefono = document.getElementById("telefono").value;
 
-  let opcionesColor = '<option value="" selected>🎨 Color</option>';
-  let arrayProductos = '';
+const colores = [
+  ["Blanco", document.getElementById("imgBlanco").value],
+  ["Negro", document.getElementById("imgNegro").value],
+  ["Gris", document.getElementById("imgGris").value],
+  ["Rojo", document.getElementById("imgRojo").value],
+  ["Azul", document.getElementById("imgAzul").value],
+  ["Verde", document.getElementById("imgVerde").value],
+  ["Beige", document.getElementById("imgBeige").value],
+  ["Rosa", document.getElementById("imgRosa").value],
+  ["Marrón", document.getElementById("imgMarron").value],
+  ["Amarillo", document.getElementById("imgAmarillo").value]
+].filter(c => c[1] !== "");
 
-  colores.forEach((item, index) => {
-    opcionesColor += `\n<option value="${item[0]}">${item[0]}</option>`;
-    arrayProductos += `${index > 0 ? ',' : ''}\n{color:"${item[0]}",imagen:"${item[1]}"}`;
-  });
+let opcionesColor = '<option value="" selected>🎨 Color</option>';
+let arrayProductos = '';
 
-  const primeraImagen = colores.length ? colores[0][1] : '';
+colores.forEach((c, i) => {
+  opcionesColor += `<option value="${c[0]}">${c[0]}</option>`;
+  arrayProductos += `${i > 0 ? ',' : ''}{color:"${c[0]}",imagen:"${c[1]}"}`;
+});
 
-  const codigo = `<iframe srcdoc='\n<div style="max-width:240px;font-family:Arial;padding:10px;position:relative;background:#171616;border-radius:12px;">\n\n<img id="img" src="${primeraImagen}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;">\n\n<button onclick="prev()" style="position:absolute;top:70px;left:5px;background:#3D3D3D;color:white;border:none;border-radius:50%;width:25px;height:25px;">‹</button>\n<button onclick="next()" style="position:absolute;top:70px;right:5px;background:#3D3D3D;color:white;border:none;border-radius:50%;width:25px;height:25px;">›</button>\n\n<h3 style="margin:8px 0 2px;font-size:14px;color:#ABAA57;">💎${titulo} ${precio}</h3>\n<p style="font-size:10px;color:#BABABA;margin:2px 0;">Ref: ${referencia}</p>\n\n<select id="color" onchange="cambiarColor()" style="width:100%;margin-top:6px;">${opcionesColor}\n</select>\n\n<select id="talla" style="width:100%;margin-top:5px;">\n<option value="" selected>🏷️ Talla</option>\n<option>S</option>\n<option>M</option>\n<option>L</option>\n</select>\n\n<button onclick="enviar()" style="width:100%;margin-top:8px;background:#ABAA57;color:black;padding:10px;border:none;border-radius:8px;font-weight:bold;">💳 Compra</button>\n\n</div>\n\n<script>\nvar i=0;\nvar productos=[${arrayProductos}\n];\nfunction actualizarImagen(){document.getElementById("img").src=productos[i].imagen;}\nfunction next(){i=(i+1)%productos.length;actualizarImagen();document.getElementById("color").value=productos[i].color;}\nfunction prev(){i=(i-1+productos.length)%productos.length;actualizarImagen();document.getElementById("color").value=productos[i].color;}\nfunction cambiarColor(){var c=document.getElementById("color").value;for(var x=0;x<productos.length;x++){if(productos[x].color===c){i=x;actualizarImagen();break;}}}\nfunction enviar(){window.open("https://wa.me/${telefono}");}\nactualizarImagen();\n<\/script>' style="width:100%;height:420px;border:none;"></iframe>`;
+const primeraImagen = colores.length ? colores[0][1] : '';
 
-  document.getElementById('resultado').value = codigo;
+const codigo = `<iframe srcdoc='
+<div style="max-width:240px;font-family:Arial;padding:10px;position:relative;background:#171616;border-radius:12px;">
+
+<img id="img" src="${primeraImagen}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;">
+
+<button onclick="prev()" style="position:absolute;top:70px;left:5px;background:#3D3D3D;color:white;border:none;border-radius:50%;width:25px;height:25px;">‹</button>
+<button onclick="next()" style="position:absolute;top:70px;right:5px;background:#3D3D3D;color:white;border:none;border-radius:50%;width:25px;height:25px;">›</button>
+
+<h3 style="margin:8px 0 2px;font-size:14px;color:#ABAA57;">💎${titulo} ${precio}</h3>
+<p style="font-size:10px;color:#BABABA;margin:2px 0;">Ref: ${referencia}</p>
+
+<select id="color" onchange="cambiarColor()" style="width:100%;margin-top:6px;">
+${opcionesColor}
+</select>
+
+<select id="talla" style="width:100%;margin-top:5px;">
+<option value="" selected>🏷️ Talla</option>
+<option value="S">S</option>
+<option value="M">M</option>
+<option value="L">L</option>
+</select>
+
+<details style="color:white;margin-top:6px;font-size:11px;">
+<summary>📦 Dirección envío (Importante)</summary>
+<input id="nombre" placeholder="Nombre" style="width:100%;margin-top:5px;">
+<input id="telefonoCliente" placeholder="Teléfono" style="width:100%;margin-top:5px;">
+<input id="direccion" placeholder="Dirección" style="width:100%;margin-top:5px;">
+<input id="ciudad" placeholder="Ciudad" style="width:100%;margin-top:5px;">
+<input id="cp" placeholder="CP" style="width:100%;margin-top:5px;">
+</details>
+
+<button onclick="enviar()" style="width:100%;margin-top:8px;background:#ABAA57;color:black;padding:10px;border:none;border-radius:8px;font-weight:bold;">💳 Compra</button>
+
+</div>
+
+<script>
+var i = 0;
+var productos = [${arrayProductos}];
+
+function actualizarImagen(){
+  document.getElementById("img").src = productos[i].imagen;
+}
+
+function next(){
+  i = (i + 1) % productos.length;
+  actualizarImagen();
+  document.getElementById("color").value = productos[i].color;
+}
+
+function prev(){
+  i = (i - 1 + productos.length) % productos.length;
+  actualizarImagen();
+  document.getElementById("color").value = productos[i].color;
+}
+
+function cambiarColor(){
+  var c = document.getElementById("color").value;
+  for(var x = 0; x < productos.length; x++){
+    if(productos[x].color === c){
+      i = x;
+      actualizarImagen();
+      break;
+    }
+  }
+}
+
+function enviar(){
+
+  var color = document.getElementById("color").value;
+  var talla = document.getElementById("talla").value;
+  var nombre = document.getElementById("nombre").value;
+  var telefonoCliente = document.getElementById("telefonoCliente").value;
+  var direccion = document.getElementById("direccion").value;
+  var ciudad = document.getElementById("ciudad").value;
+  var cp = document.getElementById("cp").value;
+
+  var mensaje =
+  "🛍️ NUEVO PEDIDO%0A%0A" +
+  "Producto: ${titulo}%0A" +
+  "Precio: ${precio}%0A" +
+  "Referencia: ${referencia}%0A%0A" +
+  "Color: " + color + "%0A" +
+  "Talla: " + talla + "%0A%0A" +
+  "Nombre: " + nombre + "%0A" +
+  "Teléfono: " + telefonoCliente + "%0A" +
+  "Dirección: " + direccion + "%0A" +
+  "Ciudad: " + ciudad + "%0A" +
+  "CP: " + cp;
+
+  window.open("https://wa.me/${telefono}?text=" + mensaje);
+}
+
+actualizarImagen();
+<\/script>
+' style="width:100%;height:620px;border:none;"></iframe>`;
+
+document.getElementById("resultado").value = codigo;
 }
 </script>
 
