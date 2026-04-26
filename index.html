@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Admin Productos</title>
-
-<style>
+<title>Panel Admin Productos</title><style>
 body{
   background:#0f0f0f;
   font-family:Arial;
@@ -54,39 +51,23 @@ textarea{
   min-height:320px;
   resize:vertical;
 }
-</style>
-</head>
-
-<body>
-
-<div class="admin-box">
-  <h1>Panel Admin Productos</h1>
-
-  <input id="titulo" placeholder="Nombre producto">
+</style></head><body><div class="admin-box">
+  <h1>Panel Admin Productos</h1>  <input id="titulo" placeholder="Nombre producto">
   <input id="precio" placeholder="Precio (ej: 15€)">
-  <input id="referencia" placeholder="Referencia">
+  <input id="referencia" placeholder="Referencia">  <input id="imgBlanco" placeholder="URL Blanco (puedes poner varias separadas por comas)">
+  <input id="imgNegro" placeholder="URL Negro (puedes poner varias separadas por comas)">
+  <input id="imgGris" placeholder="URL Gris (puedes poner varias separadas por comas)">
+  <input id="imgRojo" placeholder="URL Rojo (puedes poner varias separadas por comas)">
+  <input id="imgAzul" placeholder="URL Azul (puedes poner varias separadas por comas)">
+  <input id="imgVerde" placeholder="URL Verde (puedes poner varias separadas por comas)">
+  <input id="imgBeige" placeholder="URL Beige (puedes poner varias separadas por comas)">
+  <input id="imgRosa" placeholder="URL Rosa (puedes poner varias separadas por comas)">
+  <input id="imgMarron" placeholder="URL Marrón (puedes poner varias separadas por comas)">
+  <input id="imgAmarillo" placeholder="URL Amarillo (puedes poner varias separadas por comas)">  <input id="telefono" placeholder="WhatsApp (34600000000)"><button onclick="generarCodigo()">Generar producto</button>
 
-  <input id="imgBlanco" placeholder="URL Blanco">
-  <input id="imgNegro" placeholder="URL Negro">
-  <input id="imgGris" placeholder="URL Gris">
-  <input id="imgRojo" placeholder="URL Rojo">
-  <input id="imgAzul" placeholder="URL Azul">
-  <input id="imgVerde" placeholder="URL Verde">
-  <input id="imgBeige" placeholder="URL Beige">
-  <input id="imgRosa" placeholder="URL Rosa">
-  <input id="imgMarron" placeholder="URL Marrón">
-  <input id="imgAmarillo" placeholder="URL Amarillo">
+  <textarea id="resultado" placeholder="Aquí aparecerá el código listo para copiar"></textarea><button onclick="copiarCodigo()">📋 Copiar código</button>
 
-  <input id="telefono" placeholder="WhatsApp (34600000000)">
-
-  <button onclick="generarCodigo()">Generar producto</button>
-
-  <textarea id="resultado" placeholder="Aquí aparecerá el código listo para copiar"></textarea>
-
-  <button onclick="copiarCodigo()">📋 Copiar código</button>
-</div>
-
-<script>
+</div><script>
 function generarCodigo(){
 
 const titulo = document.getElementById("titulo").value;
@@ -109,13 +90,25 @@ const colores = [
 
 let opcionesColor = '<option value="" selected>🎨 Color</option>';
 let arrayProductos = '';
+let primeraImagen = '';
 
-colores.forEach((c, i) => {
+colores.forEach((c) => {
   opcionesColor += `<option value="${c[0]}">${c[0]}</option>`;
-  arrayProductos += `${i > 0 ? ',' : ''}{color:"${c[0]}",imagen:"${c[1]}"}`;
-});
 
-const primeraImagen = colores.length ? colores[0][1] : '';
+  const imagenes = c[1].split(",");
+
+  imagenes.forEach((img) => {
+    const limpia = img.trim();
+
+    if(limpia !== ""){
+      if(primeraImagen === ''){
+        primeraImagen = limpia;
+      }
+
+      arrayProductos += `${arrayProductos !== '' ? ',' : ''}{color:"${c[0]}",imagen:"${limpia}"}`;
+    }
+  });
+});
 
 const codigo = `<iframe srcdoc='
 <div style="max-width:240px;font-family:Arial;padding:10px;position:relative;background:linear-gradient(135deg,#d4af37,#f9e79f,#b8962e);border-radius:12px;">
@@ -157,16 +150,20 @@ var i = 0;
 var productos = [${arrayProductos}];
 
 function actualizarImagen(){
-  document.getElementById("img").src = productos[i].imagen;
+  if(productos.length > 0){
+    document.getElementById("img").src = productos[i].imagen;
+  }
 }
 
 function next(){
+  if(productos.length === 0) return;
   i = (i + 1) % productos.length;
   actualizarImagen();
   document.getElementById("color").value = productos[i].color;
 }
 
 function prev(){
+  if(productos.length === 0) return;
   i = (i - 1 + productos.length) % productos.length;
   actualizarImagen();
   document.getElementById("color").value = productos[i].color;
@@ -184,7 +181,6 @@ function cambiarColor(){
 }
 
 function enviar(){
-
   var color = document.getElementById("color").value;
   var talla = document.getElementById("talla").value;
   var nombre = document.getElementById("nombre").value;
@@ -223,7 +219,5 @@ function copiarCodigo(){
   document.execCommand("copy");
   alert("✅ Código copiado");
 }
-</script>
-
-</body>
+</script></body>
 </html>
