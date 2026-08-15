@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Panel Administrador | MI MARCA</title>
+<title>Administrador | MI MARCA</title>
 
 <style>
 
@@ -17,8 +17,14 @@
 }
 
 body{
+
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
 
     background:
@@ -29,294 +35,535 @@ body{
             #555 70%,
             #252525 100%
         );
+
 }
 
+
 header{
+
     position:sticky;
+
     top:0;
+
     z-index:100;
 
     padding:18px 5%;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
 
-    background:rgba(20,20,20,.90);
+    background:
+        rgba(20,20,20,.92);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(15px);
+
 }
+
 
 .logo{
+
     font-size:20px;
+
     font-weight:900;
+
     letter-spacing:4px;
+
 }
+
 
 .back{
+
     color:#aaa;
+
     text-decoration:none;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
 }
+
 
 .back:hover{
+
     color:#fff;
+
 }
+
 
 .container{
-    width:min(1150px,92%);
-    margin:45px auto 80px;
+
+    width:min(1100px,94%);
+
+    margin:
+        45px auto
+        80px;
+
 }
 
-.page-title{
-    margin-bottom:35px;
+
+.title{
+
+    margin-bottom:30px;
+
 }
 
-.page-title small{
+
+.title small{
+
     color:#999;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:4px;
+
 }
 
-.page-title h1{
+
+.title h1{
+
     margin-top:12px;
-    font-size:clamp(38px,7vw,70px);
+
+    font-size:
+        clamp(
+            40px,
+            8vw,
+            75px
+        );
+
     letter-spacing:-4px;
+
 }
 
-.layout{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
 
 .card{
-    padding:28px;
 
-    border:1px solid rgba(255,255,255,.12);
+    padding:25px;
+
+    margin-bottom:20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
     border-radius:8px;
 
-    background:rgba(255,255,255,.055);
+    background:
+        rgba(255,255,255,.055);
 
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.15);
 }
+
 
 .card h2{
-    margin-bottom:25px;
+
+    margin-bottom:22px;
+
     font-size:15px;
+
 }
+
 
 .field{
-    margin-bottom:20px;
+
+    margin-bottom:18px;
+
 }
 
-.field label{
+
+label{
+
     display:block;
+
     margin-bottom:8px;
 
     color:#aaa;
 
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
 
     text-transform:uppercase;
+
 }
 
-.field input,
-.field textarea,
-.field select{
+
+input,
+textarea,
+select{
+
     width:100%;
 
     padding:13px;
 
-    border:1px solid rgba(255,255,255,.15);
+    border:
+        1px solid
+        rgba(255,255,255,.15);
 
     border-radius:4px;
 
     outline:none;
 
-    background:rgba(0,0,0,.25);
+    background:
+        rgba(0,0,0,.25);
 
     color:#fff;
 
     font-family:inherit;
+
     font-size:12px;
+
 }
 
-.field select option{
+
+select option{
+
     background:#222;
+
     color:#fff;
+
 }
 
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-    border-color:rgba(255,255,255,.55);
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:
+        rgba(255,255,255,.55);
+
 }
 
-.field textarea{
-    min-height:110px;
+
+textarea{
+
+    min-height:100px;
+
     resize:vertical;
+
 }
 
-.field input::placeholder,
-.field textarea::placeholder{
-    color:#666;
-}
 
 .two{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:12px;
+
 }
+
 
 .variant{
+
     position:relative;
 
-    margin-bottom:12px;
-    padding:15px;
+    margin-bottom:18px;
 
-    border:1px solid rgba(255,255,255,.12);
+    padding:18px;
 
-    border-radius:6px;
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
-    background:rgba(0,0,0,.15);
+    border-radius:7px;
+
+    background:
+        rgba(0,0,0,.18);
+
 }
 
-.variant-title{
-    margin-bottom:12px;
+
+.variant-number{
+
+    margin-bottom:18px;
 
     color:#aaa;
 
     font-size:9px;
+
     font-weight:bold;
-    letter-spacing:1px;
+
+    letter-spacing:2px;
+
 }
 
-.remove-variant{
+
+.remove{
+
     position:absolute;
 
-    top:10px;
-    right:10px;
+    top:12px;
 
-    width:25px;
-    height:25px;
+    right:12px;
+
+    width:28px;
+
+    height:28px;
 
     border:0;
-    border-radius:3px;
+
+    border-radius:4px;
 
     background:#292929;
 
     color:#aaa;
 
     cursor:pointer;
+
+    font-size:18px;
+
 }
 
-.remove-variant:hover{
-    color:#fff;
+
+.remove:hover{
+
     background:#444;
+
+    color:#fff;
+
 }
 
-.btn{
+
+.photo-button{
+
+    display:block;
+
+    width:100%;
+
+    padding:16px;
+
+    border:
+        1px dashed
+        rgba(255,255,255,.30);
+
+    border-radius:5px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:#fff;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+}
+
+
+.photo-button:hover{
+
+    background:
+        rgba(255,255,255,.09);
+
+}
+
+
+.photo-button input{
+
+    display:none;
+
+}
+
+
+.preview{
+
+    display:none;
+
+    width:100%;
+
+    max-height:300px;
+
+    margin-top:15px;
+
+    border-radius:5px;
+
+    background:#111;
+
+    object-fit:contain;
+
+}
+
+
+.photo-status{
+
+    margin-top:8px;
+
+    color:#777;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+}
+
+
+.add{
+
     width:100%;
 
     padding:14px;
 
-    border:0;
+    border:
+        1px solid
+        rgba(255,255,255,.20);
+
     border-radius:4px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    color:#fff;
 
     cursor:pointer;
 
     font-size:9px;
-    font-weight:900;
+
+    font-weight:bold;
+
     letter-spacing:1.5px;
+
 }
 
-.btn-add{
-    margin-top:5px;
 
-    border:1px solid rgba(255,255,255,.18);
+.add:hover{
 
-    background:rgba(255,255,255,.05);
+    background:
+        rgba(255,255,255,.10);
 
-    color:#fff;
 }
 
-.btn-add:hover{
-    background:rgba(255,255,255,.10);
-}
 
-.btn-generate{
-    margin-top:15px;
+.generate{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:4px;
 
     background:#fff;
+
     color:#111;
+
+    cursor:pointer;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
 }
 
-.btn-generate:hover{
+
+.generate:hover{
+
     background:#ddd;
+
 }
 
-.result-card{
+
+.result{
+
     margin-top:20px;
+
 }
 
-.result-header{
+
+.result-top{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     gap:10px;
 
     margin-bottom:15px;
+
 }
 
-.result-header h2{
+
+.result-top h2{
+
     margin:0;
+
 }
 
-.copy-button{
+
+.copy{
+
     padding:10px 15px;
 
-    border:1px solid rgba(255,255,255,.2);
+    border:
+        1px solid
+        rgba(255,255,255,.20);
 
     border-radius:4px;
 
     background:#fff;
+
     color:#111;
 
     cursor:pointer;
 
     font-size:8px;
+
     font-weight:bold;
+
 }
 
-.copy-button:hover{
+
+.copy:hover{
+
     background:#ddd;
+
 }
 
-#codeOutput{
+
+#output{
+
     width:100%;
+
     min-height:500px;
 
     padding:18px;
 
-    border:1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
     border-radius:5px;
 
-    outline:none;
-    resize:vertical;
-
     background:#101010;
+
     color:#ddd;
 
     font-family:
@@ -324,68 +571,100 @@ header{
         Monaco,
         monospace;
 
-    font-size:11px;
+    font-size:10px;
+
     line-height:1.6;
+
+    resize:vertical;
+
 }
 
-.notice{
+
+.info{
+
     margin-top:15px;
 
     padding:15px;
 
-    border:1px solid rgba(255,255,255,.10);
+    border:
+        1px solid
+        rgba(255,255,255,.10);
 
     border-radius:5px;
 
     color:#999;
 
     font-size:9px;
-    line-height:1.6;
+
+    line-height:1.7;
+
 }
 
-.notice strong{
+
+.info strong{
+
     color:#fff;
-}
-
-@media(max-width:850px){
-
-    .layout{
-        grid-template-columns:1fr;
-    }
 
 }
 
-@media(max-width:600px){
+
+@media(max-width:650px){
 
     header{
-        padding:16px 4%;
+
+        padding:
+            16px 4%;
+
     }
+
 
     .logo{
+
         font-size:16px;
+
         letter-spacing:2px;
+
     }
+
 
     .container{
+
         width:94%;
+
         margin-top:30px;
+
     }
+
 
     .card{
-        padding:20px;
+
+        padding:18px;
+
     }
+
 
     .two{
+
         grid-template-columns:1fr;
+
     }
 
-    .result-header{
-        align-items:flex-start;
-        flex-direction:column;
+
+    .result-top{
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
     }
 
-    .copy-button{
+
+    .copy{
+
         width:100%;
+
     }
 
 }
@@ -402,8 +681,6 @@ header{
 
 <div class="logo">
 
-    <!-- 🟢 EDITAR AQUÍ: NOMBRE DE TU MARCA -->
-
     MI MARCA
 
 </div>
@@ -413,9 +690,7 @@ header{
     href="index.html"
     class="back"
 >
-
     ← VOLVER
-
 </a>
 
 </header>
@@ -425,7 +700,7 @@ header{
 <div class="container">
 
 
-<div class="page-title">
+<div class="title">
 
 <small>
     PANEL DE CONTROL
@@ -439,18 +714,14 @@ header{
 
 
 
-<div class="layout">
-
-
-
 <!-- =====================================================
-     INFORMACIÓN DEL PRODUCTO
+     DATOS DEL PRODUCTO
 ===================================================== -->
 
 <div class="card">
 
 <h2>
-    Información del producto
+    Datos del producto
 </h2>
 
 
@@ -461,38 +732,28 @@ header{
 </label>
 
 <input
-    id="productName"
+    id="name"
     type="text"
-    placeholder="Ej: Camiseta Oversize Premium"
->
+    placeholder="Ej: Camiseta Oversize"
+/>
 
 </div>
 
-
-
-<!-- =====================================================
-     REFERENCIA
-===================================================== -->
 
 <div class="field">
 
 <label>
-    REF
+    Código / REF
 </label>
 
 <input
-    id="productRef"
+    id="id"
     type="text"
     placeholder="Ej: CAM-001"
->
+/>
 
 </div>
 
-
-
-<!-- =====================================================
-     CATEGORÍA
-===================================================== -->
 
 <div class="field">
 
@@ -500,7 +761,7 @@ header{
     Categoría
 </label>
 
-<select id="productCategory">
+<select id="category">
 
 <option value="camisetas">
     Camisetas
@@ -531,26 +792,24 @@ header{
 </div>
 
 
-
 <div class="two">
 
 
 <div class="field">
 
 <label>
-    Precio (€)
+    Precio €
 </label>
 
 <input
-    id="productPrice"
+    id="price"
     type="number"
-    step="0.01"
     min="0"
+    step="0.01"
     placeholder="49.90"
->
+/>
 
 </div>
-
 
 
 <div class="field">
@@ -560,17 +819,16 @@ header{
 </label>
 
 <input
-    id="productStock"
+    id="stock"
     type="number"
     min="0"
-    placeholder="10"
->
+    value="10"
+/>
 
 </div>
 
 
 </div>
-
 
 
 <div class="field">
@@ -580,112 +838,73 @@ header{
 </label>
 
 <textarea
-    id="productDescription"
-    placeholder="Describe el producto..."
+    id="description"
+    placeholder="Descripción del producto..."
 ></textarea>
 
 </div>
 
-
-
-<!-- =====================================================
-     ENVÍO
-===================================================== -->
-
-<h2>
-    Envío
-</h2>
-
-
-<div class="two">
-
-
-<div class="field">
-
-<label>
-    Mínimo de días
-</label>
-
-<input
-    id="shippingMin"
-    type="number"
-    min="1"
-    value="3"
->
-
-</div>
-
-
-
-<div class="field">
-
-<label>
-    Máximo de días
-</label>
-
-<input
-    id="shippingMax"
-    type="number"
-    min="1"
-    value="9"
->
-
-</div>
-
-
-</div>
-
-
-
-<div class="notice">
-
-<strong>
-🚚 Envío:
-</strong>
-
-Este plazo aparecerá en la ficha
-del producto.
-
-</div>
-
 </div>
 
 
 
 <!-- =====================================================
-     COLORES E IMÁGENES
+     IMÁGENES
 ===================================================== -->
 
 <div class="card">
 
 <h2>
-    Colores e imágenes
+    Fotos del producto
 </h2>
 
 
-<div id="variantsContainer"></div>
+<div id="variants"></div>
 
 
 <button
     type="button"
-    class="btn btn-add"
-    onclick="addVariant()"
+    class="add"
+    onclick="addColor()"
 >
-
-    + AÑADIR COLOR
-
+    + AÑADIR OTRO COLOR
 </button>
+
+
+<div class="info">
+
+<strong>
+📷 ¿Cómo funciona?
+</strong>
+
+<br>
+
+Escribe el nombre del color y pulsa
+<strong>SELECCIONAR FOTO</strong>.
+
+<br>
+
+No tienes que copiar ninguna URL.
+
+<br>
+
+Puedes añadir una foto diferente
+para cada color.
+
+</div>
+
+</div>
 
 
 
 <!-- =====================================================
-     TALLAS
+     TALLAS Y ENVÍO
 ===================================================== -->
 
-<h2 style="margin-top:30px;">
+<div class="card">
 
+<h2>
     Tallas
-
 </h2>
 
 
@@ -696,105 +915,77 @@ del producto.
 </label>
 
 <input
-    id="productSizes"
+    id="sizes"
     type="text"
     placeholder="S, M, L, XL"
->
+/>
 
 </div>
 
-
-
-<div class="notice">
-
-<strong>
-💡 Ejemplo:
-</strong>
-
-S, M, L, XL
-
-<br><br>
-
-Para productos sin tallas, puedes dejar
-este campo vacío.
-
-</div>
-
-
-
-<!-- =====================================================
-     WHATSAPP
-===================================================== -->
 
 <h2 style="margin-top:30px;">
-
-    WhatsApp
-
+    Envío
 </h2>
+
+
+<div class="two">
 
 
 <div class="field">
 
 <label>
-    Número de WhatsApp
+    Días mínimo
 </label>
 
 <input
-    id="whatsappNumber"
-    type="text"
-    value="34674559614"
-    placeholder="34674559614"
->
+    id="shippingMin"
+    type="number"
+    min="1"
+    value="3"
+/>
 
 </div>
 
 
+<div class="field">
 
-<div class="notice">
+<label>
+    Días máximo
+</label>
 
-<strong>
-📱 Importante:
-</strong>
-
-Escribe el número con prefijo internacional,
-sin +, espacios ni guiones.
-
-<br><br>
-
-Ejemplo:
-
-<strong>
-34674559614
-</strong>
+<input
+    id="shippingMax"
+    type="number"
+    min="1"
+    value="9"
+/>
 
 </div>
 
+
+</div>
 
 
 <button
     type="button"
-    class="btn btn-generate"
+    class="generate"
     onclick="generateProduct()"
 >
-
-    GENERAR CÓDIGO
-
+    GENERAR PRODUCTO
 </button>
-
-</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     RESULTADO
+     CÓDIGO GENERADO
 ===================================================== -->
 
-<div class="card result-card">
+<div class="card result">
 
 
-<div class="result-header">
+<div class="result-top">
 
 <h2>
     Código generado
@@ -803,145 +994,95 @@ Ejemplo:
 
 <button
     type="button"
-    class="copy-button"
+    class="copy"
     onclick="copyCode()"
 >
-
     COPIAR CÓDIGO
-
 </button>
 
 </div>
 
 
-
 <textarea
-    id="codeOutput"
+    id="output"
     readonly
-    placeholder="Aquí aparecerá el producto generado..."
+    placeholder="Aquí aparecerá el código del producto..."
 ></textarea>
 
 
-
-<div class="notice">
+<div class="info">
 
 <strong>
-🟢 ¿Dónde lo pego?
+🟢 IMPORTANTE
 </strong>
 
 <br><br>
 
-Copia el bloque completo y pégalo dentro de:
+Después de generar el producto:
+
+<br><br>
+
+1. Pulsa <strong>COPIAR CÓDIGO</strong>.
+
+<br>
+
+2. Abre la categoría correspondiente.
+
+<br>
+
+3. Busca:
 
 <strong>
 const PRODUCTS = [
 </strong>
 
-en el archivo de la categoría correspondiente.
+<br>
+
+4. Pega el código justo debajo.
 
 <br><br>
 
-El administrador genera automáticamente:
-
-<br><br>
+Ejemplo:
 
 <strong>
-ref
+camisetas.html
 </strong>
+para camisetas.
 
 <br>
 
 <strong>
-name
+gafas.html
 </strong>
+para gafas.
 
 <br>
 
 <strong>
-category
+bisuteria.html
 </strong>
+para bisutería.
 
 <br>
 
 <strong>
-price
+gorras.html
 </strong>
+para gorras.
 
 <br>
 
 <strong>
-stock
+chandals.html
 </strong>
+para chandals.
 
 <br>
 
 <strong>
-description
+pantalones.html
 </strong>
-
-<br>
-
-<strong>
-whatsapp
-</strong>
-
-<br>
-
-<strong>
-variants
-</strong>
-
-<br>
-
-<strong>
-sizes
-</strong>
-
-<br>
-
-<strong>
-shipping
-</strong>
-
-<br><br>
-
-Ejemplos:
-
-<br><br>
-
-<strong>
-Camisetas → camisetas.html
-</strong>
-
-<br>
-
-<strong>
-Pantalones → pantalones.html
-</strong>
-
-<br>
-
-<strong>
-Chandals → chandals.html
-</strong>
-
-<br>
-
-<strong>
-Gorras → gorras.html
-</strong>
-
-<br>
-
-<strong>
-Gafas → gafas.html
-</strong>
-
-<br>
-
-<strong>
-Bisutería → bisuteria.html
-</strong>
+para pantalones.
 
 </div>
 
@@ -955,67 +1096,57 @@ Bisutería → bisuteria.html
 <script>
 
 
-/* =========================================================
-   SISTEMA DE VARIANTES
-========================================================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-let variantCounter = 0;
-
-
-
-function addVariant(
-    defaultName = "",
-    defaultImage = ""
-){
-
-    variantCounter++;
+let colorNumber = 0;
 
 
-    const id =
-        variantCounter;
+/* =====================================================
+   ESCAPAR TEXTO
+===================================================== */
+
+function escapeJS(value){
+
+    return String(value || "")
+        .replace(/\\/g,"\\\\")
+        .replace(/"/g,'\\"')
+        .replace(/\r?\n/g," ");
+
+}
 
 
-    const container =
-        document.getElementById(
-            "variantsContainer"
-        );
+/* =====================================================
+   AÑADIR COLOR
+===================================================== */
 
+function addColor(){
 
-    const element =
-        document.createElement(
-            "div"
-        );
+    colorNumber++;
 
+    const wrapper =
+        document.createElement("div");
 
-    element.className =
+    wrapper.className =
         "variant";
 
 
-    element.dataset.id =
-        id;
+    wrapper.innerHTML = `
 
+        <div class="variant-number">
 
-    element.innerHTML = `
-
-        <div class="variant-title">
-
-            COLOR ${id}
+            COLOR ${colorNumber}
 
         </div>
 
 
         <button
-
             type="button"
-
-            class="remove-variant"
-
-            onclick="removeVariant(this)"
-
+            class="remove"
+            onclick="removeColor(this)"
         >
-
             ×
-
         </button>
 
 
@@ -1025,75 +1156,67 @@ function addVariant(
                 Nombre del color
             </label>
 
-
             <input
-
-                class="variant-name"
-
+                class="color-name"
                 type="text"
-
-                value="${escapeAttribute(defaultName)}"
-
-                placeholder="Ej: Verde"
-
+                placeholder="Ej: Negro"
             >
 
         </div>
 
 
-        <div class="field">
+        <label class="photo-button">
 
-            <label>
-                Imagen de este color
-            </label>
-
+            📷 SELECCIONAR FOTO
 
             <input
-
-                class="variant-image"
-
-                type="text"
-
-                value="${escapeAttribute(defaultImage)}"
-
-                placeholder="imagenes/camiseta-verde.jpg"
-
+                class="photo-file"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onchange="loadPhoto(this)"
             >
 
-        </div>
+        </label>
 
 
-        <div class="notice">
+        <img
+            class="preview"
+            alt="Vista previa"
+        >
 
-            Cuando el cliente pulse este color,
-            la imagen del producto cambiará
-            automáticamente.
+
+        <div class="photo-status">
+
+            Todavía no has seleccionado una foto.
 
         </div>
 
     `;
 
 
-    container.appendChild(
-        element
-    );
+    document
+        .getElementById("variants")
+        .appendChild(wrapper);
 
 }
 
 
+/* =====================================================
+   ELIMINAR COLOR
+===================================================== */
 
-function removeVariant(button){
+function removeColor(button){
 
-    const variants =
+    const all =
         document.querySelectorAll(
             ".variant"
         );
 
 
-    if(variants.length <= 1){
+    if(all.length <= 1){
 
         alert(
-            "El producto necesita al menos un color."
+            "Debe existir al menos una foto."
         );
 
         return;
@@ -1108,96 +1231,164 @@ function removeVariant(button){
 }
 
 
+/* =====================================================
+   CARGAR FOTO
+===================================================== */
 
-function escapeAttribute(value){
+function loadPhoto(input){
 
-    return String(value || "")
+    const file =
+        input.files[0];
 
-        .replace(
-            /&/g,
-            "&amp;"
+
+    if(!file){
+
+        return;
+
+    }
+
+
+    const allowed = [
+
+        "image/jpeg",
+
+        "image/png",
+
+        "image/webp"
+
+    ];
+
+
+    if(
+        !allowed.includes(
+            file.type
         )
+    ){
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
+        alert(
+            "Selecciona una imagen JPG, PNG o WebP."
         );
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    /*
+       6 MB máximo por foto.
+    */
+
+    if(
+        file.size >
+        6 * 1024 * 1024
+    ){
+
+        alert(
+            "La foto es demasiado grande. El máximo es 6 MB."
+        );
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    const card =
+        input.closest(".variant");
+
+
+    const preview =
+        card.querySelector(
+            ".preview"
+        );
+
+
+    const status =
+        card.querySelector(
+            ".photo-status"
+        );
+
+
+    const reader =
+        new FileReader();
+
+
+    status.textContent =
+        "Cargando foto...";
+
+
+    reader.onload = function(event){
+
+        /*
+           Guardamos la imagen directamente
+           en el elemento para utilizarla
+           posteriormente al generar el código.
+        */
+
+        card.dataset.image =
+            event.target.result;
+
+
+        preview.src =
+            event.target.result;
+
+
+        preview.style.display =
+            "block";
+
+
+        status.textContent =
+            "✓ Foto seleccionada correctamente.";
+
+    };
+
+
+    reader.onerror = function(){
+
+        status.textContent =
+            "Error al cargar la foto.";
+
+    };
+
+
+    reader.readAsDataURL(file);
 
 }
 
 
-
-function escapeJS(value){
-
-    return String(value || "")
-
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
-
-        .replace(
-            /"/g,
-            '\\"'
-        )
-
-        .replace(
-            /\r?\n/g,
-            " "
-        );
-
-}
-
-
-
-/* =========================================================
+/* =====================================================
    GENERAR PRODUCTO
-========================================================= */
+===================================================== */
 
 function generateProduct(){
 
     const name =
         document
-        .getElementById(
-            "productName"
-        )
+        .getElementById("name")
         .value
         .trim();
 
 
-    const ref =
+    const id =
         document
-        .getElementById(
-            "productRef"
-        )
+        .getElementById("id")
         .value
         .trim();
 
 
     const category =
         document
-        .getElementById(
-            "productCategory"
-        )
+        .getElementById("category")
         .value;
 
 
     const price =
         parseFloat(
             document
-            .getElementById(
-                "productPrice"
-            )
+            .getElementById("price")
             .value
         );
 
@@ -1205,18 +1396,21 @@ function generateProduct(){
     const stock =
         parseInt(
             document
-            .getElementById(
-                "productStock"
-            )
+            .getElementById("stock")
             .value
         ) || 0;
 
 
     const description =
         document
-        .getElementById(
-            "productDescription"
-        )
+        .getElementById("description")
+        .value
+        .trim();
+
+
+    const sizesText =
+        document
+        .getElementById("sizes")
         .value
         .trim();
 
@@ -1224,9 +1418,7 @@ function generateProduct(){
     const shippingMin =
         parseInt(
             document
-            .getElementById(
-                "shippingMin"
-            )
+            .getElementById("shippingMin")
             .value
         ) || 3;
 
@@ -1234,43 +1426,18 @@ function generateProduct(){
     const shippingMax =
         parseInt(
             document
-            .getElementById(
-                "shippingMax"
-            )
+            .getElementById("shippingMax")
             .value
         ) || 9;
 
 
-    const sizesText =
-        document
-        .getElementById(
-            "productSizes"
-        )
-        .value
-        .trim();
+    /* VALIDACIONES */
 
-
-    const whatsapp =
-        document
-        .getElementById(
-            "whatsappNumber"
-        )
-        .value
-        .replace(
-            /\D/g,
-            ""
-        );
-
-
-
-    /* =====================================================
-       VALIDACIONES
-    ===================================================== */
 
     if(!name){
 
         alert(
-            "Introduce el nombre del producto."
+            "Escribe el nombre del producto."
         );
 
         return;
@@ -1278,10 +1445,10 @@ function generateProduct(){
     }
 
 
-    if(!ref){
+    if(!id){
 
         alert(
-            "Introduce la REF del producto."
+            "Escribe el código / REF."
         );
 
         return;
@@ -1289,7 +1456,10 @@ function generateProduct(){
     }
 
 
-    if(isNaN(price) || price < 0){
+    if(
+        isNaN(price) ||
+        price < 0
+    ){
 
         alert(
             "Introduce un precio válido."
@@ -1300,110 +1470,73 @@ function generateProduct(){
     }
 
 
-    if(!whatsapp){
-
-        alert(
-            "Introduce el número de WhatsApp."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        shippingMin < 1 ||
-        shippingMax < shippingMin
-    ){
-
-        alert(
-            "Revisa los días de envío."
-        );
-
-        return;
-
-    }
-
-
-
-    /* =====================================================
-       VARIANTES
-    ===================================================== */
-
-    const variants =
-        Array
-        .from(
+    const colorCards =
+        Array.from(
             document.querySelectorAll(
                 ".variant"
             )
-        )
-        .map(
-            variant => {
-
-                const variantName =
-                    variant
-                    .querySelector(
-                        ".variant-name"
-                    )
-                    .value
-                    .trim();
-
-
-                const variantImage =
-                    variant
-                    .querySelector(
-                        ".variant-image"
-                    )
-                    .value
-                    .trim();
-
-
-                return {
-
-                    name:
-                        variantName,
-
-                    image:
-                        variantImage
-
-                };
-
-            }
         );
 
 
+    const variants = [];
+
 
     for(
-        const variant
-        of variants
+        const card
+        of colorCards
     ){
 
-        if(
-            !variant.name ||
-            !variant.image
-        ){
+        const color =
+            card
+            .querySelector(
+                ".color-name"
+            )
+            .value
+            .trim();
+
+
+        const image =
+            card.dataset.image;
+
+
+        if(!color){
 
             alert(
-                "Completa el nombre y la imagen de todos los colores."
+                "Escribe el nombre de todos los colores."
             );
 
             return;
 
         }
 
+
+        if(!image){
+
+            alert(
+                "Selecciona una foto para cada color."
+            );
+
+            return;
+
+        }
+
+
+        variants.push({
+
+            name:
+                color,
+
+            image:
+                image
+
+        });
+
     }
 
 
-
-    /* =====================================================
-       TALLAS
-    ===================================================== */
-
     const sizes =
         sizesText
-
         ?
-
         sizesText
         .split(",")
         .map(
@@ -1411,25 +1544,19 @@ function generateProduct(){
                 size.trim()
         )
         .filter(Boolean)
-
         :
-
         [];
 
 
+    /* =================================================
+       CREAR CÓDIGO
+    ================================================= */
 
-    /* =====================================================
-       CÓDIGO FINAL
-    ===================================================== */
 
-    const productCode = `{
-    id: "${escapeJS(ref)}",
-
-    ref: "${escapeJS(ref)}",
+    const code = `{
+    id: "${escapeJS(id)}",
 
     name: "${escapeJS(name)}",
-
-    category: "${escapeJS(category)}",
 
     price: ${price},
 
@@ -1437,15 +1564,13 @@ function generateProduct(){
 
     description: "${escapeJS(description)}",
 
-    whatsapp: "${escapeJS(whatsapp)}",
-
     variants: [
 ${variants
     .map(
         variant =>
 `        {
             name: "${escapeJS(variant.name)}",
-            image: "${escapeJS(variant.image)}"
+            image: "${variant.image}"
         }`
     )
     .join(",\n")}
@@ -1467,48 +1592,42 @@ ${sizes
 },`;
 
 
-
-    const output =
-        document.getElementById(
-            "codeOutput"
-        );
-
-
-    output.value =
-        productCode;
+    document
+        .getElementById("output")
+        .value =
+            code;
 
 
+    document
+        .getElementById("output")
+        .scrollIntoView({
 
-    output.scrollIntoView({
+            behavior:
+                "smooth",
 
-        behavior:
-            "smooth",
+            block:
+                "center"
 
-        block:
-            "center"
-
-    });
+        });
 
 }
 
 
-
-/* =========================================================
-   COPIAR CÓDIGO
-========================================================= */
+/* =====================================================
+   COPIAR
+===================================================== */
 
 async function copyCode(){
 
     const output =
-        document.getElementById(
-            "codeOutput"
-        );
+        document
+        .getElementById("output");
 
 
     if(!output.value){
 
         alert(
-            "Primero genera un producto."
+            "Primero genera el producto."
         );
 
         return;
@@ -1518,21 +1637,22 @@ async function copyCode(){
 
     try{
 
-        await navigator.clipboard.writeText(
-            output.value
-        );
+        await navigator
+            .clipboard
+            .writeText(
+                output.value
+            );
 
 
         alert(
-            "Código copiado correctamente."
+            "✓ Código copiado."
         );
 
-    }
+    }catch(error){
 
-    catch(error){
+        output.focus();
 
         output.select();
-
 
         document.execCommand(
             "copy"
@@ -1540,7 +1660,7 @@ async function copyCode(){
 
 
         alert(
-            "Código copiado correctamente."
+            "✓ Código copiado."
         );
 
     }
@@ -1548,12 +1668,11 @@ async function copyCode(){
 }
 
 
+/* =====================================================
+   CREAR EL PRIMER COLOR AUTOMÁTICAMENTE
+===================================================== */
 
-/* =========================================================
-   PRIMER COLOR
-========================================================= */
-
-addVariant();
+addColor();
 
 </script>
 
