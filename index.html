@@ -58,7 +58,6 @@ header{
 .back{
     color:#aaa;
     text-decoration:none;
-
     font-size:9px;
     font-weight:bold;
     letter-spacing:1.5px;
@@ -79,7 +78,6 @@ header{
 
 .page-title small{
     color:#999;
-
     font-size:9px;
     font-weight:bold;
     letter-spacing:4px;
@@ -87,17 +85,13 @@ header{
 
 .page-title h1{
     margin-top:12px;
-
     font-size:clamp(38px,7vw,70px);
-
     letter-spacing:-4px;
 }
 
 .layout{
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:20px;
 }
 
@@ -105,7 +99,6 @@ header{
     padding:28px;
 
     border:1px solid rgba(255,255,255,.12);
-
     border-radius:8px;
 
     background:rgba(255,255,255,.055);
@@ -116,7 +109,6 @@ header{
 
 .card h2{
     margin-bottom:25px;
-
     font-size:15px;
 }
 
@@ -126,7 +118,6 @@ header{
 
 .field label{
     display:block;
-
     margin-bottom:8px;
 
     color:#aaa;
@@ -141,12 +132,12 @@ header{
 .field input,
 .field textarea,
 .field select{
+
     width:100%;
 
     padding:13px;
 
     border:1px solid rgba(255,255,255,.15);
-
     border-radius:4px;
 
     outline:none;
@@ -156,7 +147,6 @@ header{
     color:#fff;
 
     font-family:inherit;
-
     font-size:12px;
 }
 
@@ -173,7 +163,6 @@ header{
 
 .field textarea{
     min-height:110px;
-
     resize:vertical;
 }
 
@@ -184,28 +173,24 @@ header{
 
 .two{
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:12px;
 }
 
 .variant{
     position:relative;
 
-    margin-bottom:12px;
-
-    padding:15px;
+    margin-bottom:15px;
+    padding:18px;
 
     border:1px solid rgba(255,255,255,.12);
-
     border-radius:6px;
 
     background:rgba(0,0,0,.15);
 }
 
 .variant-title{
-    margin-bottom:12px;
+    margin-bottom:18px;
 
     color:#aaa;
 
@@ -224,7 +209,6 @@ header{
     height:25px;
 
     border:0;
-
     border-radius:3px;
 
     background:#292929;
@@ -239,21 +223,60 @@ header{
     background:#444;
 }
 
+.variant-info{
+    margin-bottom:15px;
+
+    padding:12px;
+
+    border-radius:5px;
+
+    background:rgba(255,255,255,.04);
+
+    color:#777;
+
+    font-size:9px;
+
+    line-height:1.6;
+}
+
+.preview{
+    display:none;
+
+    width:100%;
+    height:220px;
+
+    margin-top:10px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:5px;
+
+    background:#111;
+}
+
+.preview img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+}
+
 .btn{
     width:100%;
 
     padding:14px;
 
     border:0;
-
     border-radius:4px;
 
     cursor:pointer;
 
     font-size:9px;
-
     font-weight:900;
-
     letter-spacing:1.5px;
 }
 
@@ -289,9 +312,7 @@ header{
 
 .result-header{
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 
     gap:10px;
@@ -317,7 +338,6 @@ header{
     cursor:pointer;
 
     font-size:8px;
-
     font-weight:bold;
 }
 
@@ -327,7 +347,6 @@ header{
 
 #codeOutput{
     width:100%;
-
     min-height:500px;
 
     padding:18px;
@@ -337,11 +356,9 @@ header{
     border-radius:5px;
 
     outline:none;
-
     resize:vertical;
 
     background:#101010;
-
     color:#ddd;
 
     font-family:
@@ -350,7 +367,6 @@ header{
         monospace;
 
     font-size:11px;
-
     line-height:1.6;
 }
 
@@ -375,6 +391,7 @@ header{
 }
 
 .success{
+
     display:none;
 
     margin-top:15px;
@@ -410,13 +427,11 @@ header{
 
     .logo{
         font-size:16px;
-
         letter-spacing:2px;
     }
 
     .container{
         width:94%;
-
         margin-top:30px;
     }
 
@@ -430,7 +445,6 @@ header{
 
     .result-header{
         align-items:flex-start;
-
         flex-direction:column;
     }
 
@@ -452,6 +466,7 @@ header{
 <div class="logo">
     MI MARCA
 </div>
+
 
 <a
     href="index.html"
@@ -483,7 +498,7 @@ header{
 
 
 <!-- =====================================================
-     INFORMACIÓN DEL PRODUCTO
+     INFORMACIÓN
 ===================================================== -->
 
 <div class="card">
@@ -660,7 +675,7 @@ header{
 
 
 <!-- =====================================================
-     IMÁGENES Y COLORES
+     COLOR + IMAGEN
 ===================================================== -->
 
 <div class="card">
@@ -670,7 +685,9 @@ header{
 </h2>
 
 
-<div id="variantsContainer"></div>
+<div
+    id="variantsContainer"
+></div>
 
 
 <button
@@ -678,12 +695,57 @@ header{
     class="btn btn-add"
     onclick="addVariant()"
 >
-    + AÑADIR COLOR / IMAGEN
+
+    + AÑADIR COLOR + IMAGEN
+
 </button>
 
 
+<div class="notice">
+
+<strong>
+🔗 COLOR ↔ IMAGEN
+</strong>
+
+<br><br>
+
+Cada color tendrá su propia imagen.
+
+<br><br>
+
+Por ejemplo:
+
+<br><br>
+
+<strong>
+Negro → foto negra
+</strong>
+
+<br>
+
+<strong>
+Blanco → foto blanca
+</strong>
+
+<br>
+
+<strong>
+Rojo → foto roja
+</strong>
+
+<br><br>
+
+Cuando el cliente pulse un color,
+la web mostrará automáticamente
+la imagen asociada a ese color.
+
+</div>
+
+
 <h2 style="margin-top:30px;">
+
     Tallas
+
 </h2>
 
 
@@ -708,13 +770,17 @@ header{
 💡 Si no tiene tallas:
 </strong>
 
+<br><br>
+
 Déjalo vacío.
 
 </div>
 
 
 <h2 style="margin-top:30px;">
+
     WhatsApp de pedidos
+
 </h2>
 
 
@@ -742,22 +808,16 @@ Déjalo vacío.
 
 <br><br>
 
-Pon el número completo con prefijo internacional,
+Número con prefijo internacional,
 sin +, espacios ni guiones.
 
 <br><br>
 
-España:
+Ejemplo:
 
 <strong>
 34674559614
 </strong>
-
-<br><br>
-
-Este número quedará guardado dentro del producto
-generado y será el número al que se enviará
-el pedido por WhatsApp.
 
 </div>
 
@@ -767,7 +827,9 @@ el pedido por WhatsApp.
     class="btn btn-generate"
     onclick="generateProduct()"
 >
+
     GENERAR PRODUCTO
+
 </button>
 
 
@@ -775,9 +837,14 @@ el pedido por WhatsApp.
     id="successMessage"
     class="success"
 >
+
     Producto generado correctamente.
-    Ahora copia el código y pégalo en la categoría
-    correspondiente.
+
+    <br><br>
+
+    Copia el código y pégalo dentro
+    de PRODUCTS en la categoría correspondiente.
+
 </div>
 
 
@@ -787,7 +854,7 @@ el pedido por WhatsApp.
 
 
 <!-- =====================================================
-     CÓDIGO GENERADO
+     CÓDIGO
 ===================================================== -->
 
 <div class="card result-card">
@@ -805,7 +872,9 @@ el pedido por WhatsApp.
     class="copy-button"
     onclick="copyCode()"
 >
+
     COPIAR CÓDIGO
+
 </button>
 
 </div>
@@ -821,50 +890,34 @@ el pedido por WhatsApp.
 <div class="notice">
 
 <strong>
-🟢 DÓNDE PEGARLO
+🟢 ZONA PARA PEGAR EL PRODUCTO
 </strong>
 
 <br><br>
 
-Elige la categoría que seleccionaste arriba.
-
-<br><br>
-
-Por ejemplo, si seleccionas:
-
-<strong>
-Camisetas
-</strong>
-
-pega el código en:
-
-<strong>
-camisetas.html
-</strong>
-
-<br><br>
-
-Si seleccionas:
-
-<strong>
-Gorras
-</strong>
-
-pega el código en:
-
-<strong>
-gorras.html
-</strong>
-
-<br><br>
-
-etc.
+En la categoría correspondiente encontrarás:
 
 <br><br>
 
 <strong>
-⚠️ COPIA ÚNICAMENTE EL BLOQUE DEL PRODUCTO
-QUE APARECE AQUÍ.
+const PRODUCTS = [
+<br><br>
+
+// PRODUCTOS AQUÍ
+
+<br><br>
+];
+</strong>
+
+<br><br>
+
+Pega el código generado entre
+los corchetes.
+
+<br><br>
+
+<strong>
+⚠️ NO BORRES const PRODUCTS = [ NI ];
 </strong>
 
 </div>
@@ -880,16 +933,13 @@ QUE APARECE AQUÍ.
 
 
 /* =========================================================
-   SISTEMA DE VARIANTES
+   VARIANTES
 ========================================================= */
 
 let variantCounter = 0;
 
 
-function addVariant(
-    defaultName = "",
-    defaultImage = ""
-){
+function addVariant(){
 
     variantCounter++;
 
@@ -904,7 +954,9 @@ function addVariant(
 
 
     const element =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     element.className =
@@ -919,7 +971,7 @@ function addVariant(
 
         <div class="variant-title">
 
-            COLOR / IMAGEN ${id}
+            COLOR + IMAGEN ${id}
 
         </div>
 
@@ -929,20 +981,24 @@ function addVariant(
             class="remove-variant"
             onclick="removeVariant(this)"
         >
+
             ×
+
         </button>
 
 
         <div class="field">
 
             <label>
+
                 Nombre del color
+
             </label>
+
 
             <input
                 class="variant-name"
                 type="text"
-                value="${escapeAttribute(defaultName)}"
                 placeholder="Ej: Negro"
             >
 
@@ -952,30 +1008,52 @@ function addVariant(
         <div class="field">
 
             <label>
-                URL DE LA IMAGEN
+
+                URL DIRECTA DE LA IMAGEN
+
             </label>
+
 
             <input
                 class="variant-image"
                 type="url"
-                value="${escapeAttribute(defaultImage)}"
-                placeholder="https://tuweb.com/imagen.jpg"
+                placeholder="https://ejemplo.com/camiseta-negra.jpg"
+                oninput="previewImage(this)"
             >
+
+
+            <div class="preview">
+
+                <img
+                    class="preview-image"
+                    alt="Vista previa"
+                >
+
+            </div>
 
         </div>
 
 
-        <div class="notice">
+        <div class="variant-info">
 
-            Introduce aquí la URL directa de la imagen.
+            <strong>
+                Esta imagen pertenece exclusivamente
+                al color indicado arriba.
+            </strong>
 
             <br><br>
 
             Ejemplo:
 
-            <strong>
-            https://tudominio.com/camiseta-negra.jpg
-            </strong>
+            <br>
+
+            Negro →
+            camiseta-negra.jpg
+
+            <br>
+
+            Blanco →
+            camiseta-blanca.jpg
 
         </div>
 
@@ -989,6 +1067,75 @@ function addVariant(
 }
 
 
+/* =========================================================
+   VISTA PREVIA
+========================================================= */
+
+function previewImage(input){
+
+    const variant =
+        input.closest(
+            ".variant"
+        );
+
+
+    const preview =
+        variant.querySelector(
+            ".preview"
+        );
+
+
+    const image =
+        variant.querySelector(
+            ".preview-image"
+        );
+
+
+    const url =
+        input.value.trim();
+
+
+    if(!url){
+
+        preview.style.display =
+            "none";
+
+        image.removeAttribute(
+            "src"
+        );
+
+        return;
+    }
+
+
+    image.onload =
+        function(){
+
+            preview.style.display =
+                "block";
+
+        };
+
+
+    image.onerror =
+        function(){
+
+            preview.style.display =
+                "none";
+
+        };
+
+
+    image.src =
+        url;
+
+}
+
+
+/* =========================================================
+   ELIMINAR VARIANTE
+========================================================= */
+
 function removeVariant(button){
 
     const variants =
@@ -1000,7 +1147,7 @@ function removeVariant(button){
     if(variants.length <= 1){
 
         alert(
-            "El producto necesita al menos una imagen."
+            "El producto necesita al menos un color e imagen."
         );
 
         return;
@@ -1008,22 +1155,17 @@ function removeVariant(button){
 
 
     button
-        .closest(".variant")
+        .closest(
+            ".variant"
+        )
         .remove();
 
 }
 
 
-function escapeAttribute(value){
-
-    return String(value || "")
-        .replace(/&/g,"&amp;")
-        .replace(/"/g,"&quot;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;");
-
-}
-
+/* =========================================================
+   ESCAPAR TEXTO
+========================================================= */
 
 function escapeJS(value){
 
@@ -1043,28 +1185,36 @@ function generateProduct(){
 
     const name =
         document
-        .getElementById("productName")
+        .getElementById(
+            "productName"
+        )
         .value
         .trim();
 
 
     const ref =
         document
-        .getElementById("productRef")
+        .getElementById(
+            "productRef"
+        )
         .value
         .trim();
 
 
     const category =
         document
-        .getElementById("productCategory")
+        .getElementById(
+            "productCategory"
+        )
         .value;
 
 
     const price =
         parseFloat(
             document
-            .getElementById("productPrice")
+            .getElementById(
+                "productPrice"
+            )
             .value
         );
 
@@ -1072,14 +1222,18 @@ function generateProduct(){
     const stock =
         parseInt(
             document
-            .getElementById("productStock")
+            .getElementById(
+                "productStock"
+            )
             .value
         );
 
 
     const description =
         document
-        .getElementById("productDescription")
+        .getElementById(
+            "productDescription"
+        )
         .value
         .trim();
 
@@ -1087,7 +1241,9 @@ function generateProduct(){
     const shippingMin =
         parseInt(
             document
-            .getElementById("shippingMin")
+            .getElementById(
+                "shippingMin"
+            )
             .value
         ) || 3;
 
@@ -1095,23 +1251,32 @@ function generateProduct(){
     const shippingMax =
         parseInt(
             document
-            .getElementById("shippingMax")
+            .getElementById(
+                "shippingMax"
+            )
             .value
         ) || 9;
 
 
     const sizesText =
         document
-        .getElementById("productSizes")
+        .getElementById(
+            "productSizes"
+        )
         .value
         .trim();
 
 
     const whatsapp =
         document
-        .getElementById("whatsappNumber")
+        .getElementById(
+            "whatsappNumber"
+        )
         .value
-        .replace(/\D/g,"");
+        .replace(
+            /\D/g,
+            ""
+        );
 
 
     if(!name){
@@ -1127,7 +1292,7 @@ function generateProduct(){
     if(!ref){
 
         alert(
-            "Introduce la REF del producto."
+            "Introduce la REF / código."
         );
 
         return;
@@ -1164,9 +1329,12 @@ function generateProduct(){
     }
 
 
+    /* =====================================================
+       COLORES + IMÁGENES
+    ===================================================== */
+
     const variants =
-        Array
-        .from(
+        Array.from(
             document.querySelectorAll(
                 ".variant"
             )
@@ -1174,7 +1342,7 @@ function generateProduct(){
         .map(
             variant => {
 
-                const variantName =
+                const color =
                     variant
                     .querySelector(
                         ".variant-name"
@@ -1183,7 +1351,7 @@ function generateProduct(){
                     .trim();
 
 
-                const variantImage =
+                const image =
                     variant
                     .querySelector(
                         ".variant-image"
@@ -1195,10 +1363,10 @@ function generateProduct(){
                 return {
 
                     name:
-                        variantName,
+                        color,
 
                     image:
-                        variantImage
+                        image
 
                 };
 
@@ -1211,13 +1379,20 @@ function generateProduct(){
         of variants
     ){
 
-        if(
-            !variant.name ||
-            !variant.image
-        ){
+        if(!variant.name){
 
             alert(
-                "Completa el nombre y la URL de todas las imágenes."
+                "Completa el nombre de todos los colores."
+            );
+
+            return;
+        }
+
+
+        if(!variant.image){
+
+            alert(
+                "Completa la URL de imagen de todos los colores."
             );
 
             return;
@@ -1225,6 +1400,10 @@ function generateProduct(){
 
     }
 
+
+    /* =====================================================
+       TALLAS
+    ===================================================== */
 
     const sizes =
         sizesText
@@ -1239,6 +1418,10 @@ function generateProduct(){
         :
         [];
 
+
+    /* =====================================================
+       PRODUCTO FINAL
+    ===================================================== */
 
     const productCode = `{
     id: "${escapeJS(ref)}",
@@ -1278,27 +1461,27 @@ ${sizes
 },`;
 
 
-    const output =
-        document.getElementById(
-            "codeOutput"
-        );
-
-
-    output.value =
+    document
+    .getElementById(
+        "codeOutput"
+    )
+    .value =
         productCode;
 
 
-    const success =
-        document.getElementById(
-            "successMessage"
-        );
-
-
-    success.style.display =
+    document
+    .getElementById(
+        "successMessage"
+    )
+    .style.display =
         "block";
 
 
-    output.scrollIntoView({
+    document
+    .getElementById(
+        "codeOutput"
+    )
+    .scrollIntoView({
         behavior:"smooth",
         block:"center"
     });
@@ -1334,17 +1517,21 @@ async function copyCode(){
             output.value
         );
 
+
         alert(
             "Código copiado correctamente."
         );
 
-    }catch(error){
+    }
+
+    catch(error){
 
         output.select();
 
         document.execCommand(
             "copy"
         );
+
 
         alert(
             "Código copiado correctamente."
@@ -1356,7 +1543,7 @@ async function copyCode(){
 
 
 /* =========================================================
-   PRIMERA IMAGEN
+   PRIMER COLOR
 ========================================================= */
 
 addVariant();
