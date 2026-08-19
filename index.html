@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prueba Strangis - Variantes</title>
+<title>Prueba Strangis</title>
 
 <style>
 *{
@@ -15,179 +15,53 @@
 
 body{
     min-height:100vh;
-    padding:30px 15px 60px;
-    font-family:Arial,Helvetica,sans-serif;
-    color:#fff;
-    background:
-        linear-gradient(
-            135deg,
-            #151515,
-            #292929 45%,
-            #111
-        );
-}
-
-.container{
-    width:min(1100px,100%);
-    margin:auto;
-}
-
-h1{
-    margin-bottom:8px;
-    font-size:32px;
-}
-
-.subtitle{
-    margin-bottom:30px;
-    color:#999;
-    font-size:13px;
-}
-
-/* =========================
-   PANEL SIMULADO
-========================= */
-
-.panel{
-    padding:20px;
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:12px;
-    background:rgba(255,255,255,.05);
-}
-
-.panel-title{
-    margin-bottom:18px;
-    font-size:14px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.variant-editor{
-    display:grid;
-    grid-template-columns:100px 1fr 180px;
-    align-items:center;
-    gap:15px;
-
-    margin-bottom:12px;
-    padding:12px;
-
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:8px;
-
-    background:rgba(0,0,0,.25);
-}
-
-.variant-preview{
-    width:100px;
-    height:80px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    overflow:hidden;
-
-    border-radius:6px;
-    background:#222;
-
-    color:#666;
-    font-size:9px;
-}
-
-.variant-preview img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.variant-name{
-    font-size:13px;
-    font-weight:bold;
-}
-
-.variant-file{
-    margin-top:5px;
-    color:#777;
-    font-size:10px;
-}
-
-.color-select{
-    width:100%;
-    padding:11px;
-
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:6px;
-
+    padding:40px 20px;
     background:#181818;
     color:#fff;
-
-    outline:none;
-}
-
-.save-button{
-    width:100%;
-    margin-top:8px;
-    padding:14px;
-
-    border:0;
-    border-radius:6px;
-
-    background:#fff;
-    color:#111;
-
-    cursor:pointer;
-
-    font-weight:900;
-    letter-spacing:1px;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 /* =========================
-   PREVIEW TIENDA
+   TARJETA
 ========================= */
 
-.preview-title{
-    margin:45px 0 15px;
-
-    font-size:14px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.shop{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:18px;
-}
-
 .product{
-    overflow:hidden;
+    width:min(380px,100%);
+    margin:auto;
 
-    padding:13px;
+    padding:12px;
 
     border:1px solid rgba(255,255,255,.12);
     border-radius:10px;
 
-    background:rgba(255,255,255,.055);
+    background:rgba(255,255,255,.05);
 }
 
 /* =========================
-   IMAGEN
+   FOTO
 ========================= */
 
-.gallery{
+.product-gallery{
     position:relative;
 
-    height:330px;
-
-    margin:-13px -13px 14px;
+    width:100%;
+    height:360px;
 
     overflow:hidden;
 
-    background:#171717;
+    border-radius:7px;
+
+    background:#111;
 
     touch-action:pan-y;
 }
 
-.gallery img{
+.product-image{
+    width:100%;
+    height:100%;
+}
+
+.product-image img{
     width:100%;
     height:100%;
 
@@ -196,15 +70,74 @@ h1{
     object-fit:cover;
 
     user-select:none;
+    -webkit-user-drag:none;
+}
+
+/* =========================
+   TEXTO DENTRO DE LA FOTO
+========================= */
+
+.image-info{
+    position:absolute;
+
+    left:12px;
+    bottom:12px;
+
+    z-index:3;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:5px;
+
     pointer-events:none;
+}
+
+.image-label{
+    width:max-content;
+
+    padding:7px 10px;
+
+    border-radius:5px;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(6px);
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.image-ref{
+    width:max-content;
+
+    padding:5px 8px;
+
+    border-radius:4px;
+
+    background:rgba(0,0,0,.58);
+
+    color:#ddd;
+
+    font-size:8px;
+    font-weight:bold;
+
+    letter-spacing:1px;
 }
 
 /* =========================
    FLECHAS
 ========================= */
 
-.arrow{
+.gallery-arrow{
     position:absolute;
+
     top:50%;
     z-index:5;
 
@@ -215,10 +148,11 @@ h1{
     align-items:center;
     justify-content:center;
 
-    border:1px solid rgba(255,255,255,.25);
+    border:1px solid rgba(255,255,255,.3);
+
     border-radius:50%;
 
-    background:rgba(0,0,0,.58);
+    background:rgba(0,0,0,.55);
 
     color:#fff;
 
@@ -229,66 +163,59 @@ h1{
     transform:translateY(-50%);
 }
 
-.arrow.prev{
+.gallery-arrow.prev{
     left:10px;
 }
 
-.arrow.next{
+.gallery-arrow.next{
     right:10px;
 }
 
 /* =========================
-   INFO SOBRE FOTO
+   CONTADOR
 ========================= */
 
-.variant-info{
+.gallery-counter{
     position:absolute;
 
-    left:10px;
+    left:50%;
     bottom:10px;
-    z-index:5;
 
-    padding:7px 10px;
+    z-index:4;
 
-    border:1px solid rgba(255,255,255,.16);
-    border-radius:5px;
+    padding:5px 9px;
 
-    background:rgba(0,0,0,.68);
+    border-radius:20px;
+
+    background:rgba(0,0,0,.55);
 
     color:#fff;
 
     font-size:9px;
-    font-weight:900;
+    font-weight:bold;
 
-    letter-spacing:.7px;
+    transform:translateX(-50%);
 
-    backdrop-filter:blur(8px);
-}
-
-.counter{
-    position:absolute;
-
-    right:10px;
-    bottom:10px;
-    z-index:5;
-
-    padding:5px 8px;
-
-    border-radius:15px;
-
-    background:rgba(0,0,0,.60);
-
-    color:#fff;
-
-    font-size:9px;
+    pointer-events:none;
 }
 
 /* =========================
-   PRODUCT INFO
+   INFORMACIÓN
 ========================= */
+
+.product-info{
+    padding:14px 2px 3px;
+}
 
 .product-name{
-    font-size:15px;
+    font-size:16px;
+    font-weight:800;
+}
+
+.product-price{
+    margin-top:7px;
+
+    font-size:16px;
     font-weight:800;
 }
 
@@ -301,103 +228,23 @@ h1{
     line-height:1.4;
 }
 
-.price{
-    margin-top:12px;
-
-    font-size:17px;
-    font-weight:900;
-}
-
-.buy{
-    width:100%;
-
-    margin-top:14px;
-    padding:13px;
-
-    border:0;
-    border-radius:5px;
-
-    background:#fff;
-    color:#111;
-
-    cursor:pointer;
-
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-/* =========================
-   MENSAJE
-========================= */
-
-.message{
-    position:fixed;
-    left:50%;
-    bottom:20px;
-
-    z-index:100;
-
-    padding:12px 18px;
-
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:8px;
-
-    background:#181818;
-
-    color:#fff;
-
-    font-size:11px;
-
-    transform:
-        translateX(-50%)
-        translateY(100px);
-
-    opacity:0;
-
-    transition:.25s;
-}
-
-.message.show{
-    transform:
-        translateX(-50%)
-        translateY(0);
-
-    opacity:1;
-}
-
 /* =========================
    MÓVIL
 ========================= */
 
-@media(max-width:750px){
+@media(max-width:600px){
 
-    .variant-editor{
-        grid-template-columns:80px 1fr;
+    body{
+        padding:25px 12px;
     }
 
-    .variant-preview{
-        width:80px;
-        height:65px;
-    }
-
-    .color-select{
-        grid-column:1/-1;
-    }
-
-    .shop{
-        grid-template-columns:1fr;
-    }
-
-    .gallery{
-        height:360px;
-    }
-}
-
-@media(max-width:400px){
-
-    .gallery{
+    .product-gallery{
         height:330px;
+    }
+
+    .gallery-arrow{
+        width:36px;
+        height:36px;
     }
 }
 </style>
@@ -405,279 +252,101 @@ h1{
 
 <body>
 
-<div class="container">
 
-    <h1>Prueba de variantes</h1>
+<article class="product">
 
-    <div class="subtitle">
-        Panel de control → color asociado a cada imagen → tarjeta automática
-    </div>
+    <div
+        class="product-gallery"
+        id="gallery"
+    >
 
-
-    <!-- =========================
-         PANEL SIMULADO
-    ========================== -->
-
-    <div class="panel">
-
-        <div class="panel-title">
-            PANEL DE CONTROL · VARIANTES
-        </div>
-
-
-        <div class="variant-editor">
-
-            <div class="variant-preview">
-
-                <img
-                    id="panelImage0"
-                    src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80"
-                    alt=""
-                >
-
-            </div>
-
-            <div>
-
-                <div class="variant-name">
-                    Imagen 1
-                </div>
-
-                <div class="variant-file">
-                    pantalon-verde.jpg
-                </div>
-
-            </div>
-
-            <select
-                class="color-select"
-                id="color0"
-                onchange="updateColor(0)"
-            >
-
-                <option value="Verde">
-                    Verde
-                </option>
-
-                <option value="Negro">
-                    Negro
-                </option>
-
-                <option value="Beige">
-                    Beige
-                </option>
-
-                <option value="Azul">
-                    Azul
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="variant-editor">
-
-            <div class="variant-preview">
-
-                <img
-                    id="panelImage1"
-                    src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=500&q=80"
-                    alt=""
-                >
-
-            </div>
-
-            <div>
-
-                <div class="variant-name">
-                    Imagen 2
-                </div>
-
-                <div class="variant-file">
-                    pantalon-negro.jpg
-                </div>
-
-            </div>
-
-            <select
-                class="color-select"
-                id="color1"
-                onchange="updateColor(1)"
-            >
-
-                <option value="Negro">
-                    Negro
-                </option>
-
-                <option value="Verde">
-                    Verde
-                </option>
-
-                <option value="Beige">
-                    Beige
-                </option>
-
-                <option value="Azul">
-                    Azul
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="variant-editor">
-
-            <div class="variant-preview">
-
-                <img
-                    id="panelImage2"
-                    src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=500&q=80"
-                    alt=""
-                >
-
-            </div>
-
-            <div>
-
-                <div class="variant-name">
-                    Imagen 3
-                </div>
-
-                <div class="variant-file">
-                    pantalon-beige.jpg
-                </div>
-
-            </div>
-
-            <select
-                class="color-select"
-                id="color2"
-                onchange="updateColor(2)"
-            >
-
-                <option value="Beige">
-                    Beige
-                </option>
-
-                <option value="Verde">
-                    Verde
-                </option>
-
-                <option value="Negro">
-                    Negro
-                </option>
-
-                <option value="Azul">
-                    Azul
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="save-button"
-            onclick="saveVariants()"
+        <div
+            class="product-image"
+            id="imageContainer"
         >
-            GUARDAR CONFIGURACIÓN
-        </button>
 
-    </div>
+            <img
+                id="productImage"
+                src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
+                alt="Producto"
+                draggable="false"
+            >
 
-
-    <!-- =========================
-         PREVIEW
-    ========================== -->
-
-    <div class="preview-title">
-        VISTA PREVIA · TIENDA
-    </div>
+        </div>
 
 
-    <div class="shop">
+        <!-- TEXTO SOBRE LA IMAGEN -->
 
-        <article class="product">
+        <div class="image-info">
 
             <div
-                class="gallery"
-                id="gallery"
+                class="image-label"
+                id="colorLabel"
             >
-
-                <img
-                    id="productImage"
-                    src=""
-                    alt="Pantalón"
-                >
-
-
-                <button
-                    class="arrow prev"
-                    onclick="previousVariant()"
-                >
-                    ‹
-                </button>
-
-
-                <button
-                    class="arrow next"
-                    onclick="nextVariant()"
-                >
-                    ›
-                </button>
-
-
-                <div
-                    class="variant-info"
-                    id="variantInfo"
-                >
-                </div>
-
-
-                <div
-                    class="counter"
-                    id="counter"
-                >
-                </div>
-
+                VERDE
             </div>
 
-
-            <div class="product-name">
-                Pantalón Cargo
-            </div>
-
-
-            <div class="product-description">
-                Pantalón cargo con diseño urbano.
-            </div>
-
-
-            <div class="price">
-                39,90 €
-            </div>
-
-
-            <button
-                class="buy"
-                onclick="buyProduct()"
+            <div
+                class="image-ref"
+                id="refLabel"
             >
-                COMPRAR
-            </button>
+                REF: PANT-001
+            </div>
 
-        </article>
+        </div>
+
+
+        <!-- FLECHA IZQUIERDA -->
+
+        <button
+            class="gallery-arrow prev"
+            type="button"
+            onclick="changeImage(-1)"
+        >
+            ‹
+        </button>
+
+
+        <!-- FLECHA DERECHA -->
+
+        <button
+            class="gallery-arrow next"
+            type="button"
+            onclick="changeImage(1)"
+        >
+            ›
+        </button>
+
+
+        <!-- CONTADOR -->
+
+        <div
+            class="gallery-counter"
+            id="counter"
+        >
+            1 / 3
+        </div>
 
     </div>
 
-</div>
 
+    <div class="product-info">
 
-<div
-    class="message"
-    id="message"
-></div>
+        <div class="product-name">
+            Pantalón Strangis
+        </div>
+
+        <div class="product-price">
+            39,99 €
+        </div>
+
+        <div class="product-description">
+            Pantalón urbano de corte moderno.
+        </div>
+
+    </div>
+
+</article>
 
 
 <script>
@@ -686,217 +355,110 @@ h1{
    DATOS DE PRUEBA
 ========================= */
 
-const variants = [
+const images = [
 
     {
         image:
-            "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=90",
+            "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
 
         color:
-            "Verde"
+            "Verde",
+
+        ref:
+            "PANT-001"
     },
 
     {
         image:
-            "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=90",
+            "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80",
 
         color:
-            "Negro"
+            "Negro",
+
+        ref:
+            "PANT-001"
     },
 
     {
         image:
-            "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=90",
+            "https://images.unsplash.com/photo-1506629905607-d9c297d8cbb8?auto=format&fit=crop&w=900&q=80",
 
         color:
-            "Beige"
+            "Rojo",
+
+        ref:
+            "PANT-001"
     }
 
 ];
 
 
-let currentVariant = 0;
+let currentImage = 0;
 
 
 /* =========================
-   ACTUALIZAR COLOR
+   CAMBIAR IMAGEN
 ========================= */
 
-function updateColor(index){
+function updateImage(){
 
-    const select =
-        document.getElementById(
-            `color${index}`
-        );
-
-
-    if(!select)return;
-
-
-    variants[index].color =
-        select.value;
-
-
-    if(index === currentVariant){
-
-        updateProduct();
-
-    }
-
-
-    showMessage(
-        `Imagen ${index + 1}: color "${select.value}"`
-    );
-
-}
-
-
-/* =========================
-   ACTUALIZAR PRODUCTO
-========================= */
-
-function updateProduct(){
-
-    const variant =
-        variants[currentVariant];
+    const item =
+        images[currentImage];
 
 
     document.getElementById(
         "productImage"
     ).src =
-        variant.image;
+        item.image;
 
 
     document.getElementById(
-        "variantInfo"
+        "colorLabel"
     ).textContent =
-        `${variant.color} · REF. PT-001`;
+        item.color;
+
+
+    document.getElementById(
+        "refLabel"
+    ).textContent =
+        "REF: " + item.ref;
 
 
     document.getElementById(
         "counter"
     ).textContent =
-        `${currentVariant + 1} / ${variants.length}`;
+        `${currentImage + 1} / ${images.length}`;
 
 }
 
 
 /* =========================
-   SIGUIENTE
+   FLECHAS
 ========================= */
 
-function nextVariant(){
+function changeImage(direction){
 
-    currentVariant++;
+    currentImage += direction;
 
 
     if(
-        currentVariant >=
-        variants.length
+        currentImage >= images.length
     ){
 
-        currentVariant = 0;
+        currentImage = 0;
 
     }
 
 
-    updateProduct();
+    if(currentImage < 0){
 
-}
-
-
-/* =========================
-   ANTERIOR
-========================= */
-
-function previousVariant(){
-
-    currentVariant--;
-
-
-    if(currentVariant < 0){
-
-        currentVariant =
-            variants.length - 1;
+        currentImage =
+            images.length - 1;
 
     }
 
 
-    updateProduct();
-
-}
-
-
-/* =========================
-   GUARDAR
-========================= */
-
-function saveVariants(){
-
-    updateProduct();
-
-    showMessage(
-        "Configuración guardada correctamente"
-    );
-
-}
-
-
-/* =========================
-   COMPRA
-========================= */
-
-function buyProduct(){
-
-    const variant =
-        variants[currentVariant];
-
-
-    showMessage(
-        `Pedido: ${variant.color} · REF. PT-001`
-    );
-
-}
-
-
-/* =========================
-   MENSAJE
-========================= */
-
-let messageTimer;
-
-
-function showMessage(text){
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        messageTimer
-    );
-
-
-    messageTimer =
-        setTimeout(
-            ()=>{
-                message.classList.remove(
-                    "show"
-                );
-            },
-            2200
-        );
+    updateImage();
 
 }
 
@@ -934,9 +496,7 @@ gallery.addEventListener(
             event.touches[0].clientY;
 
     },
-    {
-        passive:true
-    }
+    {passive:true}
 );
 
 
@@ -959,51 +519,40 @@ gallery.addEventListener(
             event.changedTouches[0].clientY;
 
 
-        const diffX =
+        const differenceX =
             endX - startX;
 
-        const diffY =
+        const differenceY =
             endY - startY;
 
 
         /*
          * Si el movimiento es principalmente
-         * horizontal, cambiamos de variante.
+         * vertical, no cambiamos la foto.
          */
 
         if(
-            Math.abs(diffX) < 45 ||
-            Math.abs(diffX) <
-            Math.abs(diffY)
+            Math.abs(differenceX) < 45 ||
+            Math.abs(differenceX) <
+            Math.abs(differenceY)
         ){
-
             return;
-
         }
 
 
-        if(diffX < 0){
+        if(differenceX < 0){
 
-            nextVariant();
+            changeImage(1);
 
         }else{
 
-            previousVariant();
+            changeImage(-1);
 
         }
 
     },
-    {
-        passive:true
-    }
+    {passive:true}
 );
-
-
-/* =========================
-   INICIO
-========================= */
-
-updateProduct();
 
 </script>
 
