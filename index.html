@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Panel Administrador | MI MARCA</title>
+<title>Prueba Strangis - Variantes</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -18,1538 +15,997 @@
 
 body{
     min-height:100vh;
+    padding:30px 15px 60px;
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
-
     background:
         linear-gradient(
             135deg,
-            #151515 0%,
-            #303030 40%,
-            #555 70%,
-            #252525 100%
+            #151515,
+            #292929 45%,
+            #111
         );
 }
 
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    padding:18px 5%;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    border-bottom:1px solid rgba(255,255,255,.12);
-
-    background:rgba(20,20,20,.90);
-
-    backdrop-filter:blur(15px);
-}
-
-.logo{
-    font-size:20px;
-    font-weight:900;
-    letter-spacing:4px;
-}
-
-.back{
-    color:#aaa;
-    text-decoration:none;
-    font-size:9px;
-    font-weight:bold;
-    letter-spacing:1.5px;
-}
-
-.back:hover{
-    color:#fff;
-}
-
 .container{
-    width:min(1150px,92%);
-    margin:45px auto 80px;
+    width:min(1100px,100%);
+    margin:auto;
 }
 
-.page-title{
-    margin-bottom:35px;
-}
-
-.page-title small{
-    color:#999;
-    font-size:9px;
-    font-weight:bold;
-    letter-spacing:4px;
-}
-
-.page-title h1{
-    margin-top:12px;
-    font-size:clamp(38px,7vw,70px);
-    letter-spacing:-4px;
-}
-
-.layout{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.card{
-    padding:28px;
-
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:8px;
-
-    background:rgba(255,255,255,.055);
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.15);
-}
-
-.card h2{
-    margin-bottom:25px;
-    font-size:15px;
-}
-
-.field{
-    margin-bottom:20px;
-}
-
-.field label{
-    display:block;
+h1{
     margin-bottom:8px;
-
-    color:#aaa;
-
-    font-size:9px;
-    font-weight:bold;
-    letter-spacing:1.5px;
-
-    text-transform:uppercase;
+    font-size:32px;
 }
 
-.field input,
-.field textarea,
-.field select{
-
-    width:100%;
-
-    padding:13px;
-
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:4px;
-
-    outline:none;
-
-    background:rgba(0,0,0,.25);
-
-    color:#fff;
-
-    font-family:inherit;
-    font-size:12px;
+.subtitle{
+    margin-bottom:30px;
+    color:#999;
+    font-size:13px;
 }
 
-.field select option{
-    background:#222;
-    color:#fff;
-}
+/* =========================
+   PANEL SIMULADO
+========================= */
 
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-    border-color:rgba(255,255,255,.55);
-}
-
-.field textarea{
-    min-height:110px;
-    resize:vertical;
-}
-
-.field input::placeholder,
-.field textarea::placeholder{
-    color:#666;
-}
-
-.two{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.variant{
-    position:relative;
-
-    margin-bottom:15px;
-    padding:18px;
-
+.panel{
+    padding:20px;
     border:1px solid rgba(255,255,255,.12);
-    border-radius:6px;
-
-    background:rgba(0,0,0,.15);
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
 }
 
-.variant-title{
+.panel-title{
     margin-bottom:18px;
-
-    color:#aaa;
-
-    font-size:9px;
-    font-weight:bold;
+    font-size:14px;
+    font-weight:900;
     letter-spacing:1px;
 }
 
-.remove-variant{
-    position:absolute;
+.variant-editor{
+    display:grid;
+    grid-template-columns:100px 1fr 180px;
+    align-items:center;
+    gap:15px;
 
-    top:10px;
-    right:10px;
-
-    width:25px;
-    height:25px;
-
-    border:0;
-    border-radius:3px;
-
-    background:#292929;
-
-    color:#aaa;
-
-    cursor:pointer;
-}
-
-.remove-variant:hover{
-    color:#fff;
-    background:#444;
-}
-
-.variant-info{
-    margin-bottom:15px;
-
+    margin-bottom:12px;
     padding:12px;
 
-    border-radius:5px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:8px;
 
-    background:rgba(255,255,255,.04);
-
-    color:#777;
-
-    font-size:9px;
-
-    line-height:1.6;
+    background:rgba(0,0,0,.25);
 }
 
-.preview{
-    display:none;
+.variant-preview{
+    width:100px;
+    height:80px;
 
-    width:100%;
-    height:220px;
-
-    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     overflow:hidden;
 
-    border:1px solid rgba(255,255,255,.10);
+    border-radius:6px;
+    background:#222;
 
-    border-radius:5px;
-
-    background:#111;
+    color:#666;
+    font-size:9px;
 }
 
-.preview img{
-
+.variant-preview img{
     width:100%;
     height:100%;
-
-    object-fit:contain;
-
+    object-fit:cover;
 }
 
-.btn{
-    width:100%;
-
-    padding:14px;
-
-    border:0;
-    border-radius:4px;
-
-    cursor:pointer;
-
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:1.5px;
-}
-
-.btn-add{
-    margin-top:5px;
-
-    border:1px solid rgba(255,255,255,.18);
-
-    background:rgba(255,255,255,.05);
-
-    color:#fff;
-}
-
-.btn-add:hover{
-    background:rgba(255,255,255,.10);
-}
-
-.btn-generate{
-    margin-top:15px;
-
-    background:#fff;
-
-    color:#111;
-}
-
-.btn-generate:hover{
-    background:#ddd;
-}
-
-.result-card{
-    margin-top:20px;
-}
-
-.result-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:10px;
-
-    margin-bottom:15px;
-}
-
-.result-header h2{
-    margin:0;
-}
-
-.copy-button{
-    padding:10px 15px;
-
-    border:1px solid rgba(255,255,255,.2);
-
-    border-radius:4px;
-
-    background:#fff;
-
-    color:#111;
-
-    cursor:pointer;
-
-    font-size:8px;
+.variant-name{
+    font-size:13px;
     font-weight:bold;
 }
 
-.copy-button:hover{
-    background:#ddd;
+.variant-file{
+    margin-top:5px;
+    color:#777;
+    font-size:10px;
 }
 
-#codeOutput{
+.color-select{
     width:100%;
-    min-height:500px;
+    padding:11px;
 
-    padding:18px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:6px;
 
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:5px;
+    background:#181818;
+    color:#fff;
 
     outline:none;
-    resize:vertical;
-
-    background:#101010;
-    color:#ddd;
-
-    font-family:
-        Consolas,
-        Monaco,
-        monospace;
-
-    font-size:11px;
-    line-height:1.6;
 }
 
-.notice{
-    margin-top:15px;
+.save-button{
+    width:100%;
+    margin-top:8px;
+    padding:14px;
 
-    padding:15px;
+    border:0;
+    border-radius:6px;
 
-    border:1px solid rgba(255,255,255,.10);
+    background:#fff;
+    color:#111;
 
+    cursor:pointer;
+
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+/* =========================
+   PREVIEW TIENDA
+========================= */
+
+.preview-title{
+    margin:45px 0 15px;
+
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.shop{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+}
+
+.product{
+    overflow:hidden;
+
+    padding:13px;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+
+    background:rgba(255,255,255,.055);
+}
+
+/* =========================
+   IMAGEN
+========================= */
+
+.gallery{
+    position:relative;
+
+    height:330px;
+
+    margin:-13px -13px 14px;
+
+    overflow:hidden;
+
+    background:#171717;
+
+    touch-action:pan-y;
+}
+
+.gallery img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    user-select:none;
+    pointer-events:none;
+}
+
+/* =========================
+   FLECHAS
+========================= */
+
+.arrow{
+    position:absolute;
+    top:50%;
+    z-index:5;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:50%;
+
+    background:rgba(0,0,0,.58);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    transform:translateY(-50%);
+}
+
+.arrow.prev{
+    left:10px;
+}
+
+.arrow.next{
+    right:10px;
+}
+
+/* =========================
+   INFO SOBRE FOTO
+========================= */
+
+.variant-info{
+    position:absolute;
+
+    left:10px;
+    bottom:10px;
+    z-index:5;
+
+    padding:7px 10px;
+
+    border:1px solid rgba(255,255,255,.16);
     border-radius:5px;
+
+    background:rgba(0,0,0,.68);
+
+    color:#fff;
+
+    font-size:9px;
+    font-weight:900;
+
+    letter-spacing:.7px;
+
+    backdrop-filter:blur(8px);
+}
+
+.counter{
+    position:absolute;
+
+    right:10px;
+    bottom:10px;
+    z-index:5;
+
+    padding:5px 8px;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.60);
+
+    color:#fff;
+
+    font-size:9px;
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-name{
+    font-size:15px;
+    font-weight:800;
+}
+
+.product-description{
+    margin-top:7px;
 
     color:#999;
 
-    font-size:9px;
-
-    line-height:1.6;
+    font-size:11px;
+    line-height:1.4;
 }
 
-.notice strong{
-    color:#fff;
+.price{
+    margin-top:12px;
+
+    font-size:17px;
+    font-weight:900;
 }
 
-.success{
+.buy{
+    width:100%;
 
-    display:none;
+    margin-top:14px;
+    padding:13px;
 
-    margin-top:15px;
-
-    padding:14px;
-
-    border:1px solid rgba(255,255,255,.20);
-
+    border:0;
     border-radius:5px;
 
-    background:rgba(255,255,255,.06);
+    background:#fff;
+    color:#111;
+
+    cursor:pointer;
+
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+
+    z-index:100;
+
+    padding:12px 18px;
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:8px;
+
+    background:#181818;
 
     color:#fff;
 
-    font-size:10px;
+    font-size:11px;
 
-    line-height:1.5;
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    opacity:0;
+
+    transition:.25s;
 }
 
-@media(max-width:850px){
+.message.show{
+    transform:
+        translateX(-50%)
+        translateY(0);
 
-    .layout{
+    opacity:1;
+}
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:750px){
+
+    .variant-editor{
+        grid-template-columns:80px 1fr;
+    }
+
+    .variant-preview{
+        width:80px;
+        height:65px;
+    }
+
+    .color-select{
+        grid-column:1/-1;
+    }
+
+    .shop{
         grid-template-columns:1fr;
     }
 
+    .gallery{
+        height:360px;
+    }
 }
 
-@media(max-width:600px){
+@media(max-width:400px){
 
-    header{
-        padding:16px 4%;
+    .gallery{
+        height:330px;
     }
-
-    .logo{
-        font-size:16px;
-        letter-spacing:2px;
-    }
-
-    .container{
-        width:94%;
-        margin-top:30px;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    .two{
-        grid-template-columns:1fr;
-    }
-
-    .result-header{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .copy-button{
-        width:100%;
-    }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
-
-<header>
-
-<div class="logo">
-    MI MARCA
-</div>
-
-
-<a
-    href="index.html"
-    class="back"
->
-    ← VOLVER
-</a>
-
-</header>
-
-
 <div class="container">
 
+    <h1>Prueba de variantes</h1>
 
-<div class="page-title">
+    <div class="subtitle">
+        Panel de control → color asociado a cada imagen → tarjeta automática
+    </div>
 
-<small>
-    PANEL DE CONTROL
-</small>
 
-<h1>
-    PRODUCTOS
-</h1>
+    <!-- =========================
+         PANEL SIMULADO
+    ========================== -->
 
-</div>
+    <div class="panel">
 
+        <div class="panel-title">
+            PANEL DE CONTROL · VARIANTES
+        </div>
 
-<div class="layout">
 
+        <div class="variant-editor">
 
-<!-- =====================================================
-     INFORMACIÓN
-===================================================== -->
+            <div class="variant-preview">
 
-<div class="card">
+                <img
+                    id="panelImage0"
+                    src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80"
+                    alt=""
+                >
 
-<h2>
-    Información del producto
-</h2>
+            </div>
 
+            <div>
 
-<div class="field">
+                <div class="variant-name">
+                    Imagen 1
+                </div>
 
-<label>
-    Nombre del producto
-</label>
+                <div class="variant-file">
+                    pantalon-verde.jpg
+                </div>
 
-<input
-    id="productName"
-    type="text"
-    placeholder="Ej: Camiseta Oversize Premium"
->
+            </div>
 
-</div>
+            <select
+                class="color-select"
+                id="color0"
+                onchange="updateColor(0)"
+            >
 
+                <option value="Verde">
+                    Verde
+                </option>
 
-<div class="field">
+                <option value="Negro">
+                    Negro
+                </option>
 
-<label>
-    REF / Código del producto
-</label>
+                <option value="Beige">
+                    Beige
+                </option>
 
-<input
-    id="productRef"
-    type="text"
-    placeholder="Ej: CAM-001"
->
+                <option value="Azul">
+                    Azul
+                </option>
 
-</div>
+            </select>
 
+        </div>
 
-<div class="field">
 
-<label>
-    Categoría
-</label>
+        <div class="variant-editor">
 
-<select id="productCategory">
+            <div class="variant-preview">
 
-<option value="camisetas">
-    Camisetas
-</option>
+                <img
+                    id="panelImage1"
+                    src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=500&q=80"
+                    alt=""
+                >
 
-<option value="pantalones">
-    Pantalones
-</option>
+            </div>
 
-<option value="chandals">
-    Chandals
-</option>
+            <div>
 
-<option value="gorras">
-    Gorras
-</option>
+                <div class="variant-name">
+                    Imagen 2
+                </div>
 
-<option value="gafas">
-    Gafas
-</option>
+                <div class="variant-file">
+                    pantalon-negro.jpg
+                </div>
 
-<option value="bisuteria">
-    Bisutería
-</option>
+            </div>
 
-</select>
+            <select
+                class="color-select"
+                id="color1"
+                onchange="updateColor(1)"
+            >
 
-</div>
+                <option value="Negro">
+                    Negro
+                </option>
 
+                <option value="Verde">
+                    Verde
+                </option>
 
-<div class="two">
+                <option value="Beige">
+                    Beige
+                </option>
 
+                <option value="Azul">
+                    Azul
+                </option>
 
-<div class="field">
+            </select>
 
-<label>
-    Precio (€)
-</label>
+        </div>
 
-<input
-    id="productPrice"
-    type="number"
-    step="0.01"
-    min="0"
-    placeholder="49.90"
->
 
-</div>
+        <div class="variant-editor">
 
+            <div class="variant-preview">
 
-<div class="field">
+                <img
+                    id="panelImage2"
+                    src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=500&q=80"
+                    alt=""
+                >
 
-<label>
-    Stock
-</label>
+            </div>
 
-<input
-    id="productStock"
-    type="number"
-    min="0"
-    placeholder="10"
->
+            <div>
 
-</div>
+                <div class="variant-name">
+                    Imagen 3
+                </div>
 
+                <div class="variant-file">
+                    pantalon-beige.jpg
+                </div>
 
-</div>
+            </div>
 
+            <select
+                class="color-select"
+                id="color2"
+                onchange="updateColor(2)"
+            >
 
-<div class="field">
+                <option value="Beige">
+                    Beige
+                </option>
 
-<label>
-    Descripción
-</label>
+                <option value="Verde">
+                    Verde
+                </option>
 
-<textarea
-    id="productDescription"
-    placeholder="Describe el producto..."
-></textarea>
+                <option value="Negro">
+                    Negro
+                </option>
 
-</div>
+                <option value="Azul">
+                    Azul
+                </option>
 
-
-<h2>
-    Envío
-</h2>
-
-
-<div class="two">
-
-
-<div class="field">
-
-<label>
-    Mínimo de días
-</label>
-
-<input
-    id="shippingMin"
-    type="number"
-    min="1"
-    value="3"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-    Máximo de días
-</label>
-
-<input
-    id="shippingMax"
-    type="number"
-    min="1"
-    value="9"
->
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     COLOR + IMAGEN
-===================================================== -->
-
-<div class="card">
-
-<h2>
-    Colores e imágenes
-</h2>
-
-
-<div
-    id="variantsContainer"
-></div>
-
-
-<button
-    type="button"
-    class="btn btn-add"
-    onclick="addVariant()"
->
-
-    + AÑADIR COLOR + IMAGEN
-
-</button>
-
-
-<div class="notice">
-
-<strong>
-🔗 COLOR ↔ IMAGEN
-</strong>
-
-<br><br>
-
-Cada color tendrá su propia imagen.
-
-<br><br>
-
-Por ejemplo:
-
-<br><br>
-
-<strong>
-Negro → foto negra
-</strong>
-
-<br>
-
-<strong>
-Blanco → foto blanca
-</strong>
-
-<br>
-
-<strong>
-Rojo → foto roja
-</strong>
-
-<br><br>
-
-Cuando el cliente pulse un color,
-la web mostrará automáticamente
-la imagen asociada a ese color.
-
-</div>
-
-
-<h2 style="margin-top:30px;">
-
-    Tallas
-
-</h2>
-
-
-<div class="field">
-
-<label>
-    Tallas separadas por comas
-</label>
-
-<input
-    id="productSizes"
-    type="text"
-    placeholder="S, M, L, XL"
->
-
-</div>
-
-
-<div class="notice">
-
-<strong>
-💡 Si no tiene tallas:
-</strong>
-
-<br><br>
-
-Déjalo vacío.
-
-</div>
-
-
-<h2 style="margin-top:30px;">
-
-    WhatsApp de pedidos
-
-</h2>
-
-
-<div class="field">
-
-<label>
-    Número donde recibirás los pedidos
-</label>
-
-<input
-    id="whatsappNumber"
-    type="text"
-    value="34674559614"
-    placeholder="34674559614"
->
-
-</div>
-
-
-<div class="notice">
-
-<strong>
-📱 IMPORTANTE
-</strong>
-
-<br><br>
-
-Número con prefijo internacional,
-sin +, espacios ni guiones.
-
-<br><br>
-
-Ejemplo:
-
-<strong>
-34674559614
-</strong>
-
-</div>
-
-
-<button
-    type="button"
-    class="btn btn-generate"
-    onclick="generateProduct()"
->
-
-    GENERAR PRODUCTO
-
-</button>
-
-
-<div
-    id="successMessage"
-    class="success"
->
-
-    Producto generado correctamente.
-
-    <br><br>
-
-    Copia el código y pégalo dentro
-    de PRODUCTS en la categoría correspondiente.
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     CÓDIGO
-===================================================== -->
-
-<div class="card result-card">
-
-
-<div class="result-header">
-
-<h2>
-    Código generado
-</h2>
-
-
-<button
-    type="button"
-    class="copy-button"
-    onclick="copyCode()"
->
-
-    COPIAR CÓDIGO
-
-</button>
-
-</div>
-
-
-<textarea
-    id="codeOutput"
-    readonly
-    placeholder="Aquí aparecerá el producto generado..."
-></textarea>
-
-
-<div class="notice">
-
-<strong>
-🟢 ZONA PARA PEGAR EL PRODUCTO
-</strong>
-
-<br><br>
-
-En la categoría correspondiente encontrarás:
-
-<br><br>
-
-<strong>
-const PRODUCTS = [
-<br><br>
-
-// PRODUCTOS AQUÍ
-
-<br><br>
-];
-</strong>
-
-<br><br>
-
-Pega el código generado entre
-los corchetes.
-
-<br><br>
-
-<strong>
-⚠️ NO BORRES const PRODUCTS = [ NI ];
-</strong>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-<script>
-
-
-/* =========================================================
-   VARIANTES
-========================================================= */
-
-let variantCounter = 0;
-
-
-function addVariant(){
-
-    variantCounter++;
-
-    const id =
-        variantCounter;
-
-
-    const container =
-        document.getElementById(
-            "variantsContainer"
-        );
-
-
-    const element =
-        document.createElement(
-            "div"
-        );
-
-
-    element.className =
-        "variant";
-
-
-    element.dataset.id =
-        id;
-
-
-    element.innerHTML = `
-
-        <div class="variant-title">
-
-            COLOR + IMAGEN ${id}
+            </select>
 
         </div>
 
 
         <button
-            type="button"
-            class="remove-variant"
-            onclick="removeVariant(this)"
+            class="save-button"
+            onclick="saveVariants()"
         >
-
-            ×
-
+            GUARDAR CONFIGURACIÓN
         </button>
 
-
-        <div class="field">
-
-            <label>
-
-                Nombre del color
-
-            </label>
+    </div>
 
 
-            <input
-                class="variant-name"
-                type="text"
-                placeholder="Ej: Negro"
+    <!-- =========================
+         PREVIEW
+    ========================== -->
+
+    <div class="preview-title">
+        VISTA PREVIA · TIENDA
+    </div>
+
+
+    <div class="shop">
+
+        <article class="product">
+
+            <div
+                class="gallery"
+                id="gallery"
             >
-
-        </div>
-
-
-        <div class="field">
-
-            <label>
-
-                URL DIRECTA DE LA IMAGEN
-
-            </label>
-
-
-            <input
-                class="variant-image"
-                type="url"
-                placeholder="https://ejemplo.com/camiseta-negra.jpg"
-                oninput="previewImage(this)"
-            >
-
-
-            <div class="preview">
 
                 <img
-                    class="preview-image"
-                    alt="Vista previa"
+                    id="productImage"
+                    src=""
+                    alt="Pantalón"
                 >
+
+
+                <button
+                    class="arrow prev"
+                    onclick="previousVariant()"
+                >
+                    ‹
+                </button>
+
+
+                <button
+                    class="arrow next"
+                    onclick="nextVariant()"
+                >
+                    ›
+                </button>
+
+
+                <div
+                    class="variant-info"
+                    id="variantInfo"
+                >
+                </div>
+
+
+                <div
+                    class="counter"
+                    id="counter"
+                >
+                </div>
 
             </div>
 
-        </div>
+
+            <div class="product-name">
+                Pantalón Cargo
+            </div>
 
 
-        <div class="variant-info">
-
-            <strong>
-                Esta imagen pertenece exclusivamente
-                al color indicado arriba.
-            </strong>
-
-            <br><br>
-
-            Ejemplo:
-
-            <br>
-
-            Negro →
-            camiseta-negra.jpg
-
-            <br>
-
-            Blanco →
-            camiseta-blanca.jpg
-
-        </div>
-
-    `;
+            <div class="product-description">
+                Pantalón cargo con diseño urbano.
+            </div>
 
 
-    container.appendChild(
-        element
+            <div class="price">
+                39,90 €
+            </div>
+
+
+            <button
+                class="buy"
+                onclick="buyProduct()"
+            >
+                COMPRAR
+            </button>
+
+        </article>
+
+    </div>
+
+</div>
+
+
+<div
+    class="message"
+    id="message"
+></div>
+
+
+<script>
+
+/* =========================
+   DATOS DE PRUEBA
+========================= */
+
+const variants = [
+
+    {
+        image:
+            "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=90",
+
+        color:
+            "Verde"
+    },
+
+    {
+        image:
+            "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=90",
+
+        color:
+            "Negro"
+    },
+
+    {
+        image:
+            "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=90",
+
+        color:
+            "Beige"
+    }
+
+];
+
+
+let currentVariant = 0;
+
+
+/* =========================
+   ACTUALIZAR COLOR
+========================= */
+
+function updateColor(index){
+
+    const select =
+        document.getElementById(
+            `color${index}`
+        );
+
+
+    if(!select)return;
+
+
+    variants[index].color =
+        select.value;
+
+
+    if(index === currentVariant){
+
+        updateProduct();
+
+    }
+
+
+    showMessage(
+        `Imagen ${index + 1}: color "${select.value}"`
     );
 
 }
 
 
-/* =========================================================
-   VISTA PREVIA
-========================================================= */
+/* =========================
+   ACTUALIZAR PRODUCTO
+========================= */
 
-function previewImage(input){
+function updateProduct(){
 
     const variant =
-        input.closest(
-            ".variant"
-        );
+        variants[currentVariant];
 
 
-    const preview =
-        variant.querySelector(
-            ".preview"
-        );
+    document.getElementById(
+        "productImage"
+    ).src =
+        variant.image;
 
 
-    const image =
-        variant.querySelector(
-            ".preview-image"
-        );
+    document.getElementById(
+        "variantInfo"
+    ).textContent =
+        `${variant.color} · REF. PT-001`;
 
 
-    const url =
-        input.value.trim();
-
-
-    if(!url){
-
-        preview.style.display =
-            "none";
-
-        image.removeAttribute(
-            "src"
-        );
-
-        return;
-    }
-
-
-    image.onload =
-        function(){
-
-            preview.style.display =
-                "block";
-
-        };
-
-
-    image.onerror =
-        function(){
-
-            preview.style.display =
-                "none";
-
-        };
-
-
-    image.src =
-        url;
+    document.getElementById(
+        "counter"
+    ).textContent =
+        `${currentVariant + 1} / ${variants.length}`;
 
 }
 
 
-/* =========================================================
-   ELIMINAR VARIANTE
-========================================================= */
+/* =========================
+   SIGUIENTE
+========================= */
 
-function removeVariant(button){
+function nextVariant(){
 
-    const variants =
-        document.querySelectorAll(
-            ".variant"
-        );
+    currentVariant++;
 
 
-    if(variants.length <= 1){
-
-        alert(
-            "El producto necesita al menos un color e imagen."
-        );
-
-        return;
-    }
-
-
-    button
-        .closest(
-            ".variant"
-        )
-        .remove();
-
-}
-
-
-/* =========================================================
-   ESCAPAR TEXTO
-========================================================= */
-
-function escapeJS(value){
-
-    return String(value || "")
-        .replace(/\\/g,"\\\\")
-        .replace(/"/g,'\\"')
-        .replace(/\r?\n/g," ");
-
-}
-
-
-/* =========================================================
-   GENERAR PRODUCTO
-========================================================= */
-
-function generateProduct(){
-
-    const name =
-        document
-        .getElementById(
-            "productName"
-        )
-        .value
-        .trim();
-
-
-    const ref =
-        document
-        .getElementById(
-            "productRef"
-        )
-        .value
-        .trim();
-
-
-    const category =
-        document
-        .getElementById(
-            "productCategory"
-        )
-        .value;
-
-
-    const price =
-        parseFloat(
-            document
-            .getElementById(
-                "productPrice"
-            )
-            .value
-        );
-
-
-    const stock =
-        parseInt(
-            document
-            .getElementById(
-                "productStock"
-            )
-            .value
-        );
-
-
-    const description =
-        document
-        .getElementById(
-            "productDescription"
-        )
-        .value
-        .trim();
-
-
-    const shippingMin =
-        parseInt(
-            document
-            .getElementById(
-                "shippingMin"
-            )
-            .value
-        ) || 3;
-
-
-    const shippingMax =
-        parseInt(
-            document
-            .getElementById(
-                "shippingMax"
-            )
-            .value
-        ) || 9;
-
-
-    const sizesText =
-        document
-        .getElementById(
-            "productSizes"
-        )
-        .value
-        .trim();
-
-
-    const whatsapp =
-        document
-        .getElementById(
-            "whatsappNumber"
-        )
-        .value
-        .replace(
-            /\D/g,
-            ""
-        );
-
-
-    if(!name){
-
-        alert(
-            "Introduce el nombre del producto."
-        );
-
-        return;
-    }
-
-
-    if(!ref){
-
-        alert(
-            "Introduce la REF / código."
-        );
-
-        return;
-    }
-
-
-    if(isNaN(price) || price < 0){
-
-        alert(
-            "Introduce un precio válido."
-        );
-
-        return;
-    }
-
-
-    if(isNaN(stock) || stock < 0){
-
-        alert(
-            "Introduce un stock válido."
-        );
-
-        return;
-    }
-
-
-    if(!whatsapp){
-
-        alert(
-            "Introduce el número de WhatsApp."
-        );
-
-        return;
-    }
-
-
-    /* =====================================================
-       COLORES + IMÁGENES
-    ===================================================== */
-
-    const variants =
-        Array.from(
-            document.querySelectorAll(
-                ".variant"
-            )
-        )
-        .map(
-            variant => {
-
-                const color =
-                    variant
-                    .querySelector(
-                        ".variant-name"
-                    )
-                    .value
-                    .trim();
-
-
-                const image =
-                    variant
-                    .querySelector(
-                        ".variant-image"
-                    )
-                    .value
-                    .trim();
-
-
-                return {
-
-                    name:
-                        color,
-
-                    image:
-                        image
-
-                };
-
-            }
-        );
-
-
-    for(
-        const variant
-        of variants
+    if(
+        currentVariant >=
+        variants.length
     ){
 
-        if(!variant.name){
-
-            alert(
-                "Completa el nombre de todos los colores."
-            );
-
-            return;
-        }
-
-
-        if(!variant.image){
-
-            alert(
-                "Completa la URL de imagen de todos los colores."
-            );
-
-            return;
-        }
+        currentVariant = 0;
 
     }
 
 
-    /* =====================================================
-       TALLAS
-    ===================================================== */
-
-    const sizes =
-        sizesText
-        ?
-        sizesText
-        .split(",")
-        .map(
-            size =>
-                size.trim()
-        )
-        .filter(Boolean)
-        :
-        [];
-
-
-    /* =====================================================
-       PRODUCTO FINAL
-    ===================================================== */
-
-    const productCode = `{
-    id: "${escapeJS(ref)}",
-    ref: "${escapeJS(ref)}",
-    name: "${escapeJS(name)}",
-    category: "${escapeJS(category)}",
-    price: ${price},
-    stock: ${stock},
-    description: "${escapeJS(description)}",
-    whatsapp: "${escapeJS(whatsapp)}",
-
-    variants: [
-${variants
-    .map(
-        variant =>
-`        {
-            name: "${escapeJS(variant.name)}",
-            image: "${escapeJS(variant.image)}"
-        }`
-    )
-    .join(",\n")}
-    ],
-
-    sizes: [
-${sizes
-    .map(
-        size =>
-`        "${escapeJS(size)}"`
-    )
-    .join(",\n")}
-    ],
-
-    shipping: {
-        min: ${shippingMin},
-        max: ${shippingMax}
-    }
-},`;
-
-
-    document
-    .getElementById(
-        "codeOutput"
-    )
-    .value =
-        productCode;
-
-
-    document
-    .getElementById(
-        "successMessage"
-    )
-    .style.display =
-        "block";
-
-
-    document
-    .getElementById(
-        "codeOutput"
-    )
-    .scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-    });
+    updateProduct();
 
 }
 
 
-/* =========================================================
-   COPIAR
-========================================================= */
+/* =========================
+   ANTERIOR
+========================= */
 
-async function copyCode(){
+function previousVariant(){
 
-    const output =
+    currentVariant--;
+
+
+    if(currentVariant < 0){
+
+        currentVariant =
+            variants.length - 1;
+
+    }
+
+
+    updateProduct();
+
+}
+
+
+/* =========================
+   GUARDAR
+========================= */
+
+function saveVariants(){
+
+    updateProduct();
+
+    showMessage(
+        "Configuración guardada correctamente"
+    );
+
+}
+
+
+/* =========================
+   COMPRA
+========================= */
+
+function buyProduct(){
+
+    const variant =
+        variants[currentVariant];
+
+
+    showMessage(
+        `Pedido: ${variant.color} · REF. PT-001`
+    );
+
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+let messageTimer;
+
+
+function showMessage(text){
+
+    const message =
         document.getElementById(
-            "codeOutput"
+            "message"
         );
 
 
-    if(!output.value){
+    message.textContent =
+        text;
 
-        alert(
-            "Primero genera un producto."
+
+    message.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        messageTimer
+    );
+
+
+    messageTimer =
+        setTimeout(
+            ()=>{
+                message.classList.remove(
+                    "show"
+                );
+            },
+            2200
         );
-
-        return;
-    }
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            output.value
-        );
-
-
-        alert(
-            "Código copiado correctamente."
-        );
-
-    }
-
-    catch(error){
-
-        output.select();
-
-        document.execCommand(
-            "copy"
-        );
-
-
-        alert(
-            "Código copiado correctamente."
-        );
-
-    }
 
 }
 
 
-/* =========================================================
-   PRIMER COLOR
-========================================================= */
+/* =========================
+   DESLIZAR EN MÓVIL
+========================= */
 
-addVariant();
+let startX = 0;
+let startY = 0;
+
+
+const gallery =
+    document.getElementById(
+        "gallery"
+    );
+
+
+gallery.addEventListener(
+    "touchstart",
+    function(event){
+
+        if(
+            !event.touches ||
+            !event.touches.length
+        ){
+            return;
+        }
+
+
+        startX =
+            event.touches[0].clientX;
+
+        startY =
+            event.touches[0].clientY;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+gallery.addEventListener(
+    "touchend",
+    function(event){
+
+        if(
+            !event.changedTouches ||
+            !event.changedTouches.length
+        ){
+            return;
+        }
+
+
+        const endX =
+            event.changedTouches[0].clientX;
+
+        const endY =
+            event.changedTouches[0].clientY;
+
+
+        const diffX =
+            endX - startX;
+
+        const diffY =
+            endY - startY;
+
+
+        /*
+         * Si el movimiento es principalmente
+         * horizontal, cambiamos de variante.
+         */
+
+        if(
+            Math.abs(diffX) < 45 ||
+            Math.abs(diffX) <
+            Math.abs(diffY)
+        ){
+
+            return;
+
+        }
+
+
+        if(diffX < 0){
+
+            nextVariant();
+
+        }else{
+
+            previousVariant();
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =========================
+   INICIO
+========================= */
+
+updateProduct();
 
 </script>
 
 </body>
-
 </html>
