@@ -3043,7 +3043,6 @@ function renderSizes(){
 /* =========================================================
    DATOS DEL PRODUCTO
 ========================================================= */
-
 function getProductData(){
 
     const name =
@@ -3098,6 +3097,10 @@ function getProductData(){
             .trim();
 
 
+    /* =====================================================
+       VALIDACIONES BÁSICAS
+    ===================================================== */
+
     if(!name){
 
         showToast(
@@ -3122,16 +3125,21 @@ function getProductData(){
     }
 
 
-    if(!ref){
+    /*
+       REFERENCIA BASE DEL PRODUCTO
 
-        showToast(
-            "Introduce la referencia / ID.",
-            true
-        );
+       Si no existe, se genera automáticamente.
+       Esta referencia es la base para las referencias
+       independientes de cada color.
+    */
 
-        return null;
-
-    }
+    const baseRef =
+        document
+            .getElementById("productRef")
+            .value
+            .trim()
+        ||
+        generateBaseRef(category);
 
 
     if(
@@ -3176,6 +3184,10 @@ function getProductData(){
     }
 
 
+    /* =====================================================
+       LIMPIAR COLORES Y FOTOS
+    ===================================================== */
+
     const cleanVariants =
         variants.map(
             variant=>({
@@ -3191,8 +3203,14 @@ function getProductData(){
                         "#888888"
                     ).trim(),
 
+                /*
+                   Conservamos la referencia individual
+                   si ese color ya tiene una.
+                */
                 ref:
-                    String(variant.ref || "").trim(),
+                    String(
+                        variant.ref || ""
+                    ).trim(),
 
                 images:
                     (
@@ -3228,16 +3246,9 @@ function getProductData(){
     }
 
 
-    cleanVariants.forEach((variant,index)=>{
-        if(!variant.ref){
-            variant.ref =
-                generateVariantReference(
-                    ref,
-                    variant.name,
-                    index
-                );
-        }
-    });
+    /* =====================================================
+       VALIDAR CADA COLOR
+    ===================================================== */
 
     for(const variant of cleanVariants){
 
@@ -3267,25 +3278,77 @@ function getProductData(){
     }
 
 
-    const baseRef =
-        document.getElementById("productRef").value.trim() ||
-        generateBaseRef(category);
+    /* =====================================================
+       GENERAR REFERENCIAS POR COLOR
+
+       Cada variante conserva su propia referencia.
+
+       Ejemplo:
+
+       Producto:
+       STR-CAMI-A1B2C3
+
+       Negro:
+       STR-CAMI-A1B2C3-NEGRO-01
+
+       Blanco:
+       STR-CAMI-A1B2C3-BLANCO-02
+    ===================================================== */
 
     const variantsWithRefs =
-        ensureVariantRefs(baseRef,cleanVariants);
+        ensureVariantRefs(
+            baseRef,
+            cleanVariants
+        );
 
-    document.getElementById("productRef").value = baseRef;
+
+    /*
+       Actualizamos también el estado global para que
+       la vista previa y el formulario usen exactamente
+       las mismas referencias que se guardarán.
+    */
+
+    variants =
+        variantsWithRefs;
+
+
+    /*
+       Guardamos/mostramos la referencia base generada.
+    */
+
+    document
+        .getElementById("productRef")
+        .value =
+            baseRef;
+
+
+    /* =====================================================
+       DEVOLVER PRODUCTO
+    ===================================================== */
 
     return {
 
         name,
         category,
-        ref: baseRef,
+
+        /*
+           Referencia general/base del producto.
+        */
+        ref:
+            baseRef,
+
         price,
         stock,
         description,
         whatsapp,
 
+        /*
+           Cada color incluye:
+           - nombre
+           - código de color
+           - referencia independiente
+           - imágenes
+        */
         images:
             variantsWithRefs,
 
@@ -3303,12 +3366,12 @@ function getProductData(){
         shipping_max:
             shippingMax,
 
-        active:true
+        active:
+            true
 
     };
 
-}
-
+           }
 
 /* =========================================================
    GUARDAR
