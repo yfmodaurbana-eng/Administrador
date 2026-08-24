@@ -4521,33 +4521,72 @@ document.addEventListener(
 
 
         if(
-            target.dataset.nameIndex !==
-            undefined
+    target.dataset.nameIndex !==
+    undefined
+){
+
+    const index =
+        Number(
+            target.dataset.nameIndex
+        );
+
+    if(variants[index]){
+
+        variants[index].name =
+            target.value;
+
+        /*
+           Generamos la referencia automáticamente,
+           pero NO reconstruimos todo el formulario.
+        */
+
+        const baseRef =
+            document
+                .getElementById("productRef")
+                ?.value
+                .trim()
+            ||
+            generateBaseRef(
+                document
+                    .getElementById("productCategory")
+                    ?.value
+                    .trim()
+                    ||
+                    "PROD"
+            );
+
+        if(
+            !document
+                .getElementById("productRef")
+                .value
+                .trim()
         ){
 
-            const index =
-                Number(
-                    target.dataset.nameIndex
-                );
-
-            if(variants[index]){
-
-                variants[index].name =
-                    target.value;
-
-                variants[index].ref =
-                    generateVariantReference(
-                        document.getElementById("productRef")?.value || "",
-                        target.value,
-                        index
-                    );
-
-                updatePreview();
-                renderVariants();
-
-            }
+            document
+                .getElementById("productRef")
+                .value =
+                    baseRef;
 
         }
+
+        variants[index].ref =
+            generateVariantRef(
+                baseRef,
+                target.value,
+                index
+            );
+
+        /*
+           Solo actualizamos la vista previa.
+           El input no se destruye y el teclado
+           permanece abierto.
+        */
+
+        updatePreview();
+
+    }
+
+}
 
 
         if(
