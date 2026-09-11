@@ -2093,33 +2093,28 @@ header{
                 Categoría
             </label>
 
-            <select id="productCategory">
+            <div style="display:flex;gap:8px;align-items:center">
+                <select id="productCategory" style="flex:1"></select>
 
-                <option value="camisetas">
-                    Camisetas
-                </option>
+                <button
+                    id="addCategoryButton"
+                    type="button"
+                    class="btn btn-small"
+                    title="Añadir una nueva categoría"
+                >
+                    + CATEGORÍA
+                </button>
+            </div>
 
-                <option value="pantalones">
-                    Pantalones
-                </option>
-
-                <option value="conjuntos">
-                    Conjuntos
-                </option>
-
-                <option value="gorras">
-                    Gorras
-                </option>
-
-                <option value="gafas">
-                    Gafas
-                </option>
-
-                <option value="bisuteria">
-                    Bisutería
-                </option>
-
-            </select>
+            <div style="
+                margin-top:8px;
+                color:#888;
+                font-size:8px;
+                line-height:1.5
+            ">
+                Las categorías se gestionan dinámicamente. Puedes añadir
+                nuevas sin modificar el código.
+            </div>
 
         </div>
 <div class="field">
@@ -2634,7 +2629,7 @@ let loadingProducts = false;
    CONSTANTES
 ========================================================= */
 
-const CATEGORIES = [
+const DEFAULT_CATEGORIES = [
     "camisetas",
     "pantalones",
     "conjuntos",
@@ -2642,6 +2637,188 @@ const CATEGORIES = [
     "gafas",
     "bisuteria"
 ];
+
+const CATEGORY_STORAGE_KEY =
+    "strangis_categories_v1";
+
+let CATEGORIES = loadStoredCategories();
+
+function normalizeCategory(value){
+    return str(value)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-+|-+$/g,"");
+}
+
+function categoryLabel(value){
+    return str(value)
+        .split("-")
+        .filter(Boolean)
+        .map(
+            part =>
+                part.charAt(0).toUpperCase() +
+                part.slice(1)
+        )
+        .join(" ");
+}
+
+function loadStoredCategories(){
+    let stored = [];
+
+    try{
+        const raw =
+            localStorage.getItem(
+                CATEGORY_STORAGE_KEY
+            );
+
+        const parsed =
+            raw ? JSON.parse(raw) : [];
+
+        if(Array.isArray(parsed)){
+            stored = parsed
+                .map(normalizeCategory)
+                .filter(Boolean);
+        }
+    }catch(error){
+        console.warn(
+            "No se pudieron cargar las categorías guardadas.",
+            error
+        );
+    }
+
+    return [
+        ...new Set([
+            ...DEFAULT_CATEGORIES,
+            ...stored
+        ])
+    ];
+}
+
+function saveStoredCategories(){
+    try{
+        localStorage.setItem(
+            CATEGORY_STORAGE_KEY,
+            JSON.stringify(CATEGORIES)
+        );
+    }catch(error){
+        console.warn(
+            "No se pudieron guardar las categorías.",
+            error
+        );
+    }
+}
+
+function addCategoryToList(value){
+    const category =
+        normalizeCategory(value);
+
+    if(!category){
+        return "";
+    }
+
+    if(!CATEGORIES.includes(category)){
+        CATEGORIES.push(category);
+        saveStoredCategories();
+    }
+
+    return category;
+}
+
+function syncCategoriesFromProducts(products){
+    let changed = false;
+
+    for(const product of products || []){
+        const category =
+            normalizeCategory(product?.category);
+
+        if(
+            category &&
+            !CATEGORIES.includes(category)
+        ){
+            CATEGORIES.push(category);
+            changed = true;
+        }
+    }
+
+    if(changed){
+        saveStoredCategories();
+    }
+
+    renderCategoryOptions(
+        $("productCategory")?.value
+    );
+}
+
+function renderCategoryOptions(selected=""){
+    const select =
+        $("productCategory");
+
+    if(!select){
+        return;
+    }
+
+    const current =
+        normalizeCategory(selected);
+
+    const categories =
+        [...new Set(CATEGORIES)]
+            .filter(Boolean);
+
+    select.innerHTML =
+        categories
+            .map(
+                category => `
+                    <option value="${esc(category)}">
+                        ${esc(categoryLabel(category))}
+                    </option>
+                `
+            )
+            .join("");
+
+    if(
+        current &&
+        !categories.includes(current)
+    ){
+        addCategoryToList(current);
+        renderCategoryOptions(current);
+        return;
+    }
+
+    select.value =
+        current && categories.includes(current)
+            ? current
+            : (categories[0] || "");
+}
+
+function createCategory(){
+    const raw =
+        window.prompt(
+            "Nombre de la nueva categoría:"
+        );
+
+    if(raw === null){
+        return;
+    }
+
+    const category =
+        addCategoryToList(raw);
+
+    if(!category){
+        showToast(
+            "Introduce un nombre de categoría válido.",
+            true
+        );
+        return;
+    }
+
+    renderCategoryOptions(category);
+
+    showToast(
+        `Categoría "${categoryLabel(category)}" añadida.`
+    );
+}
 
 /* =========================================================
    HELPERS
@@ -3278,6 +3455,8 @@ async function loadProducts(){
             throw error;
         }
 
+        syncCategoriesFromProducts(data || []);
+
         if(!data?.length){
 
             container.innerHTML =
@@ -3551,12 +3730,15 @@ async function editProduct(productId){
 $("productName").value =
             data.name || "";
 
-        $("productCategory").value =
-            CATEGORIES.includes(
-                str(data.category).toLowerCase()
-            )
-            ? str(data.category).toLowerCase()
-            : "camisetas";
+        const productCategory =
+            addCategoryToList(
+                data.category
+            );
+
+        renderCategoryOptions(
+            productCategory ||
+            CATEGORIES[0]
+        );
 $("productPrice").value =
             data.price ?? 0;
 
@@ -3670,8 +3852,9 @@ variants = [
 
     $("productName").value = "";
 
-    $("productCategory").value =
-        "camisetas";
+    renderCategoryOptions(
+        CATEGORIES[0]
+    );
 $("productPrice").value =
         "35";
 
@@ -4047,15 +4230,17 @@ function getProductData(){
         return null;
     }
 
-    if(!CATEGORIES.includes(category)){
-
+    if(!category){
         showToast(
             "Selecciona una categoría válida.",
             true
         );
-
         return null;
     }
+
+    // Las categorías no están limitadas a una lista cerrada.
+    // Las nuevas categorías se guardan directamente con el producto.
+    addCategoryToList(category);
 
     if(
         price < 0 ||
@@ -4850,6 +5035,12 @@ $("addVariantButton")
         addVariant
     );
 
+$("addCategoryButton")
+    .addEventListener(
+        "click",
+        createCategory
+    );
+
 $("addSizeButton")
     .addEventListener(
         "click",
@@ -5338,6 +5529,10 @@ document.addEventListener(
 /* =========================================================
    INICIO
 ========================================================= */
+
+renderCategoryOptions(
+    CATEGORIES[0]
+);
 
 newProduct();
 
